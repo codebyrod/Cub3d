@@ -6,13 +6,13 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 21:04:37 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/08/27 23:02:10 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/08/28 00:35:43 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void err_init_cub(t_game game, char *str)
+void err_init_cub(t_game *game, char *str)
 {
 	if(ft_strscmp(str, "window"))
 	{
@@ -31,24 +31,24 @@ void err_init_cub(t_game game, char *str)
 	}
 }
 
-void	clear_connection(t_game game)
+void	clear_connection(t_game *game)
 {
-	mlx_destroy_display(game.connection);
-	free(game.connection);
+	mlx_destroy_display(game->connection);
+	free(game->connection);
 }
 
-void	clear_window(t_game game)
+void	clear_window(t_game *game)
 {
-	mlx_clear_window(game.connection, game.window);
+	mlx_clear_window(game->connection, game->window);
 	clear_connection(game);
 }
-void	clear_img_ptr(t_game game)
+void	clear_img_ptr(t_game *game)
 {
-	mlx_destroy_image(game.connection, game.img.img_ptr);
+	mlx_destroy_image(game->connection, game->img.img_ptr);
 	clear_window(game);
 }
-void	clear_img_pixel(t_game game)
+void	clear_img_pixel(t_game *game)
 {
-	free(game.img.img_pixels_ptr);
+	free(game->img.img_pixels_ptr);
 	clear_img_ptr(game);
 }

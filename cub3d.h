@@ -10,8 +10,6 @@
 # include "X11/X.h"
 # include "includes/includes.h"
 
-
-
 # define HEIGHT 800
 # define WIDTH 800
 
@@ -48,12 +46,14 @@ typedef struct s_game
 
 }	t_game;
 
-int		cub_init(t_game game);
-void 	err_init_cub(t_game game, char *str);
-void	clear_connection(t_game game);
-void	clear_window(t_game game);
-void	clear_img_ptr(t_game game);
-void	clear_img_pixel(t_game game);
+// FUNÇÕES PRINCIPAIS
+int		cub_init(t_game *game);
 
+//FUNÇÕES DE LIMPEZA DA CUB_INIT
+void 	err_init_cub(t_game *game, char *str);
+void	clear_connection(t_game *game);
+void	clear_window(t_game *game);
+void	clear_img_ptr(t_game *game);
+void	clear_img_pixel(t_game *game);
 
 #endif

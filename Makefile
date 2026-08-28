@@ -6,7 +6,7 @@
 #    By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/24 07:25:17 by rosousa-          #+#    #+#              #
-#    Updated: 2026/08/27 21:05:44 by rodrigo          ###   ########.fr        #
+#    Updated: 2026/08/27 22:28:20 by rodrigo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ MLX_LNK     = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 SRC         = main.c \
               cub3d.c \
-              err.c \
-#               render.c \
+              err_init_cub.c \
+              includes/aux.c \
 #               math_utils.c \
 #               events.c \
 #               string_utils.c \

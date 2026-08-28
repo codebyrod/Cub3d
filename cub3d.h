@@ -3,14 +3,23 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+#include <unistd.h>
 # include <math.h>
 # include "minilibx-linux/mlx.h"
 # include "X11/keysym.h"
 # include "X11/X.h"
+# include "includes/includes.h"
 
-# define MALLOC_ERROR 1
+
+
 # define HEIGHT 800
 # define WIDTH 800
+
+enum status_malloc
+{
+	MALLOC_SUCESS,
+	MALLOC_ERROR
+};
 
 typedef struct s_img
 {
@@ -39,6 +48,12 @@ typedef struct s_game
 
 }	t_game;
 
-int	cub_init(t_game game);
+int		cub_init(t_game game);
+void 	err_init_cub(t_game game, char *str);
+void	clear_connection(t_game game);
+void	clear_window(t_game game);
+void	clear_img_ptr(t_game game);
+void	clear_img_pixel(t_game game);
+
 
 #endif

@@ -27,6 +27,10 @@ Aqui começa o seu texto em português.
 ### Pré-requisitos
 O projeto foi desenvolvido em **C** e utiliza a biblioteca gráfica `MiniLibX`. Certifique-se de ter `gcc`, `make` e as dependências da X11 instaladas (se estiver no Linux).
 
+O MiniLibX para Linux requerxorg ,x11 ezlib , portanto você precisará instalar as seguintes dependências:xorg ,libxext-dev ezlib1g-dev . A instalação dessas dependências no Ubuntu pode ser feita da seguinte forma:
+
+sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+
 ### Compilação
 Para compilar o projeto, é necessário executar `make` na pasta da `MiniLibx`. Após isso execute o seguinte comando na raiz do repositório:
 
@@ -59,6 +63,13 @@ Este projeto foi construído com base em conceitos matemáticos sólidos e otimi
 - **Passagem por Referência:** Correção de bugs críticos na manipulação de structs complexas passando ponteiros para funções de renderização.
 
 ### Referências Externas
+
+usadas no cub3d
+https://harm-smits.github.io/42docs/libs/minilibx/
+
+
+
+usadas no fractol que me ajudou a entender a minilibx
 - **Equaciona Com Paulo Pereira:** Conjunto de aulas sobre números complexos ministradas através do canal do youtube.
 - **Beginner's Guide To The Desktop:** série de vídeos explicando componentes básicos do desktop:
 	- Aula 1: Introduction

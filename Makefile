@@ -6,22 +6,22 @@
 #    By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/24 07:25:17 by rosousa-          #+#    #+#              #
-#    Updated: 2026/08/27 01:06:03 by rodrigo          ###   ########.fr        #
+#    Updated: 2026/08/27 21:05:44 by rodrigo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        = cub3d
-CC          = cc
+CC          = cc -g
 CFLAGS      = -Wall -Wextra -Werror
 MLX_DIR     = ./minilibx-linux
 MLX_LNK     = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 SRC         = main.c \
-#               init.c \
+              cub3d.c \
+              err.c \
 #               render.c \
 #               math_utils.c \
 #               events.c \
-#               error.c \
 #               string_utils.c \
 #               parse.c \
 

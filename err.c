@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   err.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/08/27 17:08:58 by rodrigo          ###   ########.fr       */
+/*   Created: 2026/08/27 21:04:37 by rodrigo           #+#    #+#             */
+/*   Updated: 2026/08/27 21:07:15 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-
-int	main(void)
+void err(t_game game, char *arr)
 {
-	t_game game;
-	int		cub;
 	
-	cub = cub_init(game);
-	if (!cub)
-	{
-		printf("Deu erro na inicialização do cub\n");
-	}
-	return (0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/08/29 01:13:20 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/08/29 01:42:08 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,9 @@ int cub_init(t_game *game)
 {
 	cub_connection(game);
 	put_img(game);
-	mlx_loop(game->connection); //mantém a janela aberta
-	// events_init(game);
-
+	events_init(game);
 	//limpar depois de fechar a janela
-	end_connection(game);
+	mlx_loop(game->connection); //mantém a janela aberta
+	// end_connection(game); se deicar essa linha depois do loop ela fecha com segfault
 	return (0);
 }

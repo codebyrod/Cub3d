@@ -60,4 +60,12 @@ void	clear_img_pixel(t_game *game);
 //imagens 2d
 void put_img(t_game *game);
 
+//events
+int		handle_movement(t_game *game);
+int		close_handler(t_game *game);
+void	events_init(t_game *game);
+
+
+
+
 #endif

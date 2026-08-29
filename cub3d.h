@@ -48,6 +48,7 @@ typedef struct s_game
 
 // FUNÇÕES PRINCIPAIS
 int		cub_init(t_game *game);
+void	end_connection(t_game *game);
 
 //FUNÇÕES DE LIMPEZA DA CUB_INIT
 void 	err_init_cub(t_game *game, char *str);

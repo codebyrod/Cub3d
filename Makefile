@@ -6,7 +6,7 @@
 #    By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/24 07:25:17 by rosousa-          #+#    #+#              #
-#    Updated: 2026/08/28 22:01:33 by rodrigo          ###   ########.fr        #
+#    Updated: 2026/08/28 22:42:17 by rodrigo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC         = main.c \
               err_init_cub.c \
               includes/aux.c \
               events.c \
-#               events.c \
+              img.c \
 #               string_utils.c \
 #               parse.c \
 

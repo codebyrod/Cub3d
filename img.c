@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   img.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/28 21:52:34 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/08/28 22:34:47 by rodrigo          ###   ########.fr       */
+/*   Created: 2026/08/28 22:35:11 by rodrigo           #+#    #+#             */
+/*   Updated: 2026/08/28 22:56:15 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	handle_movement()
-// {
-	
-	
-// }
+void put_img(t_game *game)
+{
+	int x;
+	int y;
 
-// void	close_handler()
-// {
+	x = 10;
+	y = 10;
+	while(x < (HEIGHT / 3))
+	{
+		y = 10;
+		while (y < (WIDTH / 3) )
+		{
+			mlx_pixel_put(game->connection, game->window, x, y, 0x0000ff);
+			y++;
+		}
+		x++;
+	}
 	
-// }
-
-// void	events_init(t_game *game)
-// {
-// 	(void)game;
-// 	mlx_hook(game->window, KeyPress, KeyPressMask,
-// 		handle_movement,  game);
-// 	mlx_hook(fractal->window, DestroyNotify,
-// 		StructureNotifyMask, close_handler, fractal);
-// 	printf("events\n");
-// }
+}

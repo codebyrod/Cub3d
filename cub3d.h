@@ -10,8 +10,8 @@
 # include "X11/X.h"
 # include "includes/includes.h"
 
-# define HEIGHT 800
-# define WIDTH 800
+# define HEIGHT 200
+# define WIDTH 200
 
 enum status_malloc
 {
@@ -56,5 +56,8 @@ void	clear_connection(t_game *game);
 void	clear_window(t_game *game);
 void	clear_img_ptr(t_game *game);
 void	clear_img_pixel(t_game *game);
+
+//imagens 2d
+void put_img(t_game *game);
 
 #endif

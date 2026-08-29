@@ -6,21 +6,13 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/08/28 22:02:06 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/08/28 22:43:24 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	events_init(t_game *game)
-// {
-// 	(void)game;
-// 	mlx_hook(game->window, KeyPress, KeyPressMask,
-// 		handle_movement,  game);
-// 	mlx_hook(fractal->window, DestroyNotify,
-// 		StructureNotifyMask, close_handler, fractal);
-// 	printf("events\n");
-// }
+
 
 //resolver isso de alguma forma
 int	cub_connection(t_game *game)
@@ -63,6 +55,7 @@ void	end_connection(t_game *game)
 int cub_init(t_game *game)
 {
 	cub_connection(game);
+	put_img(game);
 	mlx_loop(game->connection); //mantém a janela aberta
 	// events_init(game);
 

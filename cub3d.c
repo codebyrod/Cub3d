@@ -6,12 +6,11 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/08/29 01:08:59 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/08/29 01:13:20 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 //resolver isso de alguma forma
 int	cub_connection(t_game *game)

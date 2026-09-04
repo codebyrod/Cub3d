@@ -6,23 +6,13 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/08/28 22:02:06 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/04 18:28:07 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	events_init(t_game *game)
-// {
-// 	(void)game;
-// 	mlx_hook(game->window, KeyPress, KeyPressMask,
-// 		handle_movement,  game);
-// 	mlx_hook(fractal->window, DestroyNotify,
-// 		StructureNotifyMask, close_handler, fractal);
-// 	printf("events\n");
-// }
-
-//resolver isso de alguma forma
+//resolver isso de alguma forma, fiz de um jeito legal no fractol, olhar depois
 int	cub_connection(t_game *game)
 {
 	game->connection = mlx_init();
@@ -53,20 +43,21 @@ int	cub_connection(t_game *game)
 	return (0);
 }
 
-void	end_connection(t_game *game)
-{
-	mlx_destroy_window(game->connection, game->window);
-	mlx_destroy_display(game->connection);
-	free(game->connection);
-}
+// void	end_connection(t_game *game)
+// {
+// 	mlx_destroy_window(game->connection, game->window);
+// 	mlx_destroy_display(game->connection);
+// 	free(game->connection);
+// }
 
 int cub_init(t_game *game)
 {
 	cub_connection(game);
-	mlx_loop(game->connection); //mantém a janela aberta
-	// events_init(game);
-
+	events_init(game);
+	game_render(game);
+	// put_img(game);
 	//limpar depois de fechar a janela
-	end_connection(game);
+	mlx_loop(game->connection); //mantém a janela aberta
+	// end_connection(game); se deicar essa linha depois do loop ela fecha com segfault
 	return (0);
 }

@@ -3,15 +3,18 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-#include <unistd.h>
+# include <unistd.h>
 # include <math.h>
 # include "minilibx-linux/mlx.h"
 # include "X11/keysym.h"
 # include "X11/X.h"
 # include "includes/includes.h"
 
-# define HEIGHT 800
-# define WIDTH 800
+# define HEIGHT 400
+# define WIDTH 400
+# define TILE_SIZE 64
+# define RED	0X9e1c3c
+# define BLUE	0X124ac4
 
 enum status_malloc
 {
@@ -29,11 +32,11 @@ typedef struct s_img
 	int		size_len;
 }	t_img;
 
-typedef struct s_coord
+typedef struct s_pxl
 {
-	int	x;
-	int	y;	
-}	t_coord;
+	int	pxl_x;
+	int	pxl_y;	
+}	t_pxl;
 
 typedef struct s_game
 {
@@ -42,7 +45,7 @@ typedef struct s_game
 	char	*name_wd;
 	int		hook;
 	t_img	img;
-	t_coord	coord;
+	t_pxl	pxl;
 
 }	t_game;
 
@@ -56,5 +59,22 @@ void	clear_connection(t_game *game);
 void	clear_window(t_game *game);
 void	clear_img_ptr(t_game *game);
 void	clear_img_pixel(t_game *game);
+
+//imagens 2d
+// void put_img(t_game *game);
+void	game_render(t_game *game);
+void	handle_pixel(t_game *game);
+void	my_pixel_put(t_img *img, int x, int y, int color);
+
+//map
+void	map_render(t_game *game);
+
+//player
+void	player_render(t_game *game);
+
+//events
+int		handle_movement(t_game *game);
+int		close_handler(t_game *game);
+void	events_init(t_game *game);
 
 #endif

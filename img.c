@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   img.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/08/29 01:40:02 by rodrigo          ###   ########.fr       */
+/*   Created: 2026/08/28 22:35:11 by rodrigo           #+#    #+#             */
+/*   Updated: 2026/09/04 18:32:12 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(void)
+//construir o mapa
+
+//construir o jogador
+//calculo da movimentação do jogador
+
+
+
+
+
+void	handle_pixel(t_game *game)
 {
-	t_game game;
-	int		cub;
-	
-	cub = cub_init(&game);
-	if (!cub)
-	{
-		printf("Deu erro na inicialização do cub\n");
-	}
-	return (0);
+	map_render(game);
+	//player_render();
+	//calc_moviment();
+
 }
 
+void game_render(t_game *game)
+{
+	handle_pixel(game);
+	mlx_put_image_to_window(game->connection,
+		game->window,
+		game->img.img_ptr,
+		0, 0);
+	
+}

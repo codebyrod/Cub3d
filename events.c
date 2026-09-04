@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:52:34 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/08/29 01:35:41 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/08/29 01:51:14 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	close_handler(t_game *game)
 	mlx_destroy_window(game->connection, game->window);
 	mlx_destroy_display(game->connection);
 	free(game->connection);
-	return (0);
+	exit (EXIT_SUCCESS);
 }
 
 void	events_init(t_game *game)

@@ -12,7 +12,7 @@
 
 # define HEIGHT 400
 # define WIDTH 400
-# define TILE_SIZE 64
+# define TILE_SIZE 10
 # define RED	0X9e1c3c
 # define BLUE	0X124ac4
 
@@ -38,6 +38,14 @@ typedef struct s_pxl
 	int	pxl_y;	
 }	t_pxl;
 
+typedef struct map
+{
+	char	**map;
+	int		map_width;
+	int		map_height;
+}	t_map;
+
+
 typedef struct s_game
 {
 	void	*connection;
@@ -46,6 +54,8 @@ typedef struct s_game
 	int		hook;
 	t_img	img;
 	t_pxl	pxl;
+	t_map	map;
+
 
 }	t_game;
 

@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/04 18:28:07 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/19 14:50:23 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	cub_connection(t_game *game)
 		ft_putstr_fd("Error allocating the Minilibx connection [mlx_init]", 2);
 		return (MALLOC_ERROR);
 	}
+	// game->window = mlx_new_window(game->connection, WIDTH, HEIGHT, "Cub3D");
 	game->window = mlx_new_window(game->connection, HEIGHT, WIDTH, "Cub3D");
 	if (!game->window)
 	{

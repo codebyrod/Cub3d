@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/04 20:24:44 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/19 14:38:50 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,45 @@
 
 int	main(void)
 {
+	// t_game game;
+	
+	// char	*map[] = {"11111", "10001", "10101", "10012", "11112"};
+	// char *map[] = {
+	// "111111111111",
+	// "100000000001",
+	// "100000000001",
+	// "100011100001",
+	// "100010000001",
+	// "100000011100",
+	// "100000000001",
+	// "111111111111",
+	// NULL
+	// };
+
 	t_game game;
-	char *map[] = {"11111", "10001", "10101", "11111"};
+	
+	char *map[] = {
+	"1bcdefghijklm",
+	"n0000000000o",
+	"p0000000000q",
+	"r000stu0000v",
+	"x000w000000y",
+	"z000000ABC00",
+	"D0000000000E",
+	"FGHIJK1MNOPQ1",
+	NULL
+	};
+	
+	int		map_width = 12;
+	int		map_height = 8;
 	int		cub;
 	
 	game.map.map = map;
+	game.map.map_width = map_width;
+	game.map.map_height = map_height;
+	if ((game.map.map_width * TILE_SIZE) > WIDTH
+		|| (game.map.map_height * TILE_SIZE) > HEIGHT)
+		printf("Erro, mapa maior que janela\n");
 	cub = cub_init(&game);
 	if (!cub)
 	{

@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/19 14:50:23 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/20 16:55:24 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	cub_connection(t_game *game)
 int cub_init(t_game *game)
 {
 	cub_connection(game);
+	data_init(game);
 	events_init(game);
 	game_render(game);
 	// put_img(game);

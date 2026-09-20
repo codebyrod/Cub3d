@@ -14,16 +14,36 @@
 # define WIDTH 400
 # define TILE_SIZE 20
 # define PLAYER_SIZE 10
-# define RED	0X9e1c3c
+# define RED	0xcc3bd1
 # define BLUE	0X124ac4
 # define YELLOW	0xddb70d
 # define VIOLET	0X70034c
 
-enum status_malloc
+typedef enum e_status_malloc
 {
 	MALLOC_SUCESS,
 	MALLOC_ERROR
-};
+}	t_status_malloc;
+
+typedef	enum	e_bool
+{
+	BOOL_FALSE,
+	BOOL_TRUE
+}	t_bool;
+
+typedef struct s_keys
+{
+	int		w;
+	int		a;
+	int		s;
+	int		d;
+	int		x;
+	int		esc;
+	int		a_up;
+	int		a_right;
+	int		a_bottom;
+	int		a_left;	
+}	t_keys;
 
 typedef struct s_img
 {
@@ -67,6 +87,7 @@ typedef struct s_game
 	t_pxl		pxl;
 	t_player 	play;
 	t_map		map;
+	t_keys		keys;
 }	t_game;
 
 // FUNÇÕES PRINCIPAIS
@@ -94,8 +115,14 @@ void	map_render(t_game *game);
 void	player_render(t_game *game);
 
 //events
-int		handle_movement(t_game *game);
+// int		handle_movement(t_game *game);
 int		close_handler(t_game *game);
 void	events_init(t_game *game);
+
+//data inits
+void	data_init(t_game *game);
+void	pos_init_player(t_game *game);
+
+
 
 #endif

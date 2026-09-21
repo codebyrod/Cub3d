@@ -6,34 +6,33 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:52:34 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/20 17:03:17 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/20 21:02:59 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
 int	handle_press(int keycode, t_game *game)
 {
 	if (keycode == XK_w || keycode == XK_W)
 		game->keys.w = BOOL_TRUE;
-	if (keycode == XK_a || keycode == XK_A)
+	else if (keycode == XK_a || keycode == XK_A)
 		game->keys.a = BOOL_TRUE;
-	if (keycode == XK_s || keycode == XK_S)
+	else if (keycode == XK_s || keycode == XK_S)
 		game->keys.s = BOOL_TRUE;
-	if (keycode == XK_d || keycode == XK_D)
+	else if (keycode == XK_d || keycode == XK_D)
 		game->keys.d = BOOL_TRUE;
-	if (keycode == XK_x || keycode == XK_X)
+	else if (keycode == XK_x || keycode == XK_X)
 		game->keys.x = BOOL_TRUE;
-	if (keycode == XK_Escape)
+	else if (keycode == XK_Escape)
 		game->keys.esc = BOOL_TRUE;
-	if (keycode == XK_Up)
+	else if (keycode == XK_Up)
 		game->keys.a_up = BOOL_TRUE;
-	if (keycode == XK_Right)
+	else if (keycode == XK_Right)
 		game->keys.a_right = BOOL_TRUE;
-	if (keycode == XK_Down)
+	else if (keycode == XK_Down)
 		game->keys.a_bottom = BOOL_TRUE;
-	if (keycode == XK_Left)
+	else if (keycode == XK_Left)
 		game->keys.a_left = BOOL_TRUE;
 	printf("A tecla APERTADA foi %d\n", keycode);
 	// printf("keycode recebido: %d\n", keycode);
@@ -43,37 +42,70 @@ int	handle_release(int keycode, t_game *game)
 {
 	if (keycode == XK_w || keycode == XK_W)
 		game->keys.w = BOOL_FALSE;
-	if (keycode == XK_a || keycode == XK_A)
+	else if (keycode == XK_a || keycode == XK_A)
 		game->keys.a = BOOL_FALSE;
-	if (keycode == XK_s || keycode == XK_S)
+	else if (keycode == XK_s || keycode == XK_S)
 		game->keys.s = BOOL_FALSE;
-	if (keycode == XK_d || keycode == XK_D)
+	else if (keycode == XK_d || keycode == XK_D)
 		game->keys.d = BOOL_FALSE;
-	if (keycode == XK_x || keycode == XK_X)
+	else if (keycode == XK_x || keycode == XK_X)
 		game->keys.x = BOOL_FALSE;
-	if (keycode == XK_Escape)
+	else if (keycode == XK_Escape)
 		game->keys.esc = BOOL_FALSE;
-	if (keycode == XK_Up)
+	else if (keycode == XK_Up)
 		game->keys.a_up = BOOL_FALSE;
-	if (keycode == XK_Right)
+	else if (keycode == XK_Right)
 		game->keys.a_right = BOOL_FALSE;
-	if (keycode == XK_Down)
+	else if (keycode == XK_Down)
 		game->keys.a_bottom = BOOL_FALSE;
-	if (keycode == XK_Left)
+	else if (keycode == XK_Left)
 		game->keys.a_left = BOOL_FALSE;
 	printf("A tecla SOLTA foi %d\n", keycode);
 	return (0);
 }
 
-int	handle_movement(t_game *game)
+static void	set_mult_keys(t_game *game)
 {
-	if (game->keys.s == BOOL_TRUE)
+	int sqr;
+
+	sqr = sqrt(2);
+	if (game->keys.w || game->keys.a_up)
+		game->play.play_y -= (0.001 / sqr);
+	if (game->keys.a || game->keys.a_left)
+		game->play.play_x -= (0.001 / sqr);
+	if (game->keys.s || game->keys.a_bottom)
+		game->play.play_y += (0.001 / sqr);
+	if (game->keys.d || game->keys.a_right)
+		game->play.play_x -= (0.001 / sqr);
+	
+	
+}
+
+int	handle_movement(t_game *game)
+{	
+	if ((game->keys.w == BOOL_TRUE && game->keys.a == BOOL_TRUE)
+	|| (game->keys.a_up == BOOL_TRUE && game->keys.a_left == BOOL_TRUE))
+		set_mult_keys(game);		
+	else if ((game->keys.a == BOOL_TRUE && game->keys.s == BOOL_TRUE)
+	|| (game->keys.a_left == BOOL_TRUE && game->keys.a_bottom == BOOL_TRUE))
+		set_mult_keys(game);
+	else if ((game->keys.w == BOOL_TRUE && game->keys.d == BOOL_TRUE)
+	|| (game->keys.a_up == BOOL_TRUE && game->keys.a_right == BOOL_TRUE))
+		set_mult_keys(game);
+	else if ((game->keys.d == BOOL_TRUE && game->keys.s == BOOL_TRUE)
+	|| (game->keys.a_right == BOOL_TRUE && game->keys.a_bottom == BOOL_TRUE))
+		set_mult_keys(game);
+	else
 	{
-		printf("S é BOOL_TRUE\n");
-		game->play.play_y += 0.001;
-		printf("valor do jogador: %f\n", game->play.play_y);
+		if (game->keys.w == BOOL_TRUE || game->keys.a_up == BOOL_TRUE)
+			game->play.play_y -= 0.001;
+		if (game->keys.s == BOOL_TRUE || game->keys.a_bottom == BOOL_TRUE)
+			game->play.play_y += 0.001;
+		if (game->keys.a == BOOL_TRUE || game->keys.a_left == BOOL_TRUE)
+			game->play.play_x -= 0.001;
+		if (game->keys.d == BOOL_TRUE || game->keys.a_right == BOOL_TRUE)
+			game->play.play_x += 0.001;
 	}
-	// printf("função handle_mvm foi chamada\n");
 	game_render(game);
 	return (0);
 }

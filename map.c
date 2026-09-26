@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/02 13:10:07 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/19 14:16:14 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/22 15:48:41 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	map_render(t_game *game)
 		{
 			if(game->map.map[j][i] == '0')
 				put_tile(game, TILE_SIZE, i*TILE_SIZE, j*TILE_SIZE, BLUE);
-			else if (game->map.map[j][i] > 64)
+			else if (game->map.map[j][i] > 'A')
 				put_tile(game, TILE_SIZE, i*TILE_SIZE, j*TILE_SIZE, YELLOW);
 			else
 				put_tile(game, TILE_SIZE, i*TILE_SIZE, j*TILE_SIZE, RED);

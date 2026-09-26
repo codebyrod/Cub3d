@@ -5,6 +5,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <sys/time.h>
 # include "minilibx-linux/mlx.h"
 # include "X11/keysym.h"
 # include "X11/X.h"
@@ -14,6 +15,7 @@
 # define WIDTH 400
 # define TILE_SIZE 20
 # define PLAYER_SIZE 10
+# define SPEED_SEC 3
 # define RED	0xcc3bd1
 # define BLUE	0X124ac4
 # define YELLOW	0xddb70d
@@ -45,6 +47,12 @@ typedef struct s_keys
 	int		a_left;	
 }	t_keys;
 
+typedef struct s_time
+{
+	double	last_frame_time;
+	double	delta_time;
+}	t_time;
+
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -70,10 +78,13 @@ typedef struct s_map
 
 typedef struct s_player
 {
+	int		pos_init_Y;
+	int		pos_init_X;
 	double	play_x;
 	double	play_y;
-	int		pos_init_X;
-	int		pos_init_Y;
+	double	delta_x;
+	double	delta_y;
+	double	magnitude;
 }	t_player;
 
 
@@ -88,6 +99,7 @@ typedef struct s_game
 	t_player 	play;
 	t_map		map;
 	t_keys		keys;
+	t_time		time;
 }	t_game;
 
 // FUNÇÕES PRINCIPAIS
@@ -114,8 +126,9 @@ void	map_render(t_game *game);
 //player
 void	player_render(t_game *game);
 
+
 //events
-// int		handle_movement(t_game *game);
+int		handle_movement(t_game *game);
 int		close_handler(t_game *game);
 void	events_init(t_game *game);
 
@@ -123,6 +136,7 @@ void	events_init(t_game *game);
 void	data_init(t_game *game);
 void	pos_init_player(t_game *game);
 
-
+//movements
+int		handle_movement(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:52:34 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/20 21:42:53 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/25 18:19:10 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	handle_press(int keycode, t_game *game)
 		game->keys.a_bottom = BOOL_TRUE;
 	else if (keycode == XK_Left)
 		game->keys.a_left = BOOL_TRUE;
-	printf("A tecla APERTADA foi %d\n", keycode);
-	// printf("keycode recebido: %d\n", keycode);
 	return (0);
 }
 int	handle_release(int keycode, t_game *game)
@@ -60,37 +58,11 @@ int	handle_release(int keycode, t_game *game)
 		game->keys.a_bottom = BOOL_FALSE;
 	else if (keycode == XK_Left)
 		game->keys.a_left = BOOL_FALSE;
-	printf("A tecla SOLTA foi %d\n", keycode);
+	// printf("A tecla SOLTA foi %d\n", keycode);
 	return (0);
 }
 
-int	handle_movement(t_game *game)
-{	
-	double delta_x;
-	double delta_y;
-	double	magnitude;
 
-	delta_x = 0;
-	delta_y = 0;
-	if (game->keys.w == BOOL_TRUE || game->keys.a_up == BOOL_TRUE)
-		delta_y -= 0.001;
-	if (game->keys.s == BOOL_TRUE || game->keys.a_bottom == BOOL_TRUE)
-		delta_y += 0.001;
-	if (game->keys.a == BOOL_TRUE || game->keys.a_left == BOOL_TRUE)
-		delta_x -= 0.001;
-	if (game->keys.d == BOOL_TRUE || game->keys.a_right == BOOL_TRUE)
-		delta_x += 0.001;
-	magnitude = sqrt((delta_x * delta_x) + (delta_y * delta_y));
-	if (magnitude > 0.001)
-	{
-		delta_x = (delta_x / magnitude) * 0.001;
-		delta_y = (delta_y / magnitude) * 0.001;
-	}
-	game->play.play_x += delta_x;
-	game->play.play_y += delta_y;
-	game_render(game);
-	return (0);
-}
 
 int	close_handler(t_game *game)
 {
@@ -116,7 +88,7 @@ void	events_init(t_game *game)
 	
 	//loop
 	mlx_loop_hook(game->connection, handle_movement, game);
-	printf("loop_hook aqui\n");
+	// printf("loop_hook aqui\n");
 	mlx_hook(game->window, DestroyNotify,
 		StructureNotifyMask, close_handler, game);
 	// printf("events\n");

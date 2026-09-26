@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/20 16:55:24 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/24 22:48:56 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	cub_connection(t_game *game)
 		ft_putstr_fd("Error allocating the Minilibx connection [mlx_init]", 2);
 		return (MALLOC_ERROR);
 	}
-	// game->window = mlx_new_window(game->connection, WIDTH, HEIGHT, "Cub3D");
-	game->window = mlx_new_window(game->connection, HEIGHT, WIDTH, "Cub3D");
+	game->window = mlx_new_window(game->connection, WIDTH, HEIGHT, "Cub3D");
+	// game->window = mlx_new_window(game->connection, HEIGHT, WIDTH, "Cub3D");
 	if (!game->window)
 	{
 		err_init_cub(game, "window");
@@ -44,13 +44,20 @@ int	cub_connection(t_game *game)
 	return (0);
 }
 
-// void	end_connection(t_game *game)
+void	end_connection(t_game *game)
+{
+	mlx_destroy_window(game->connection, game->window);
+	mlx_destroy_display(game->connection);
+	free(game->connection);
+}
+// int	close_handler(t_game *game)
 // {
+// 	mlx_destroy_image(game->connection, game->img.img_ptr);
 // 	mlx_destroy_window(game->connection, game->window);
 // 	mlx_destroy_display(game->connection);
 // 	free(game->connection);
+// 	exit (EXIT_SUCCESS);
 // }
-
 int cub_init(t_game *game)
 {
 	cub_connection(game);

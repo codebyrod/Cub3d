@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 16:55:50 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/20 17:01:29 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/25 17:41:26 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,8 @@ void	data_init(t_game *game)
 	pos_init_player(game);
 	game->play.play_x = game->play.pos_init_X + 0.3;
 	game->play.play_y = game->play.pos_init_Y + 0.3;
+	game->play.delta_x = 0;
+	game->play.delta_y = 0;
+	game->time.last_frame_time = 0;
 	
 }

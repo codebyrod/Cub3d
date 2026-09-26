@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/20 14:09:39 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/24 23:16:15 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,37 @@ int	main(void)
 
 	t_game game;
 	
+
+
+	// char *map[] = {
+	// "0j",
+	// "m0",
+	// // "p0000000000q",
+	// // "r000stu0000v",
+	// // "x000w000000y",
+	// // "z000000ABC00",
+	// // "D0000000000E",
+	// // "liviaK1MNOPQ1",
+	// NULL
+	// };
+	
+	// int		map_width = 2;
+	// int		map_height = 2;
+
+	
+	int		map_width = 12;
+	int		map_height = 8;
 	char *map[] = {
-	"1bcdefghijklm",
-	"nabry000000o",
+	"murilojhoguel",
+	"nanijoao000o",
 	"p0000000000q",
 	"r000stu0000v",
 	"x000w000000y",
 	"z000000ABC00",
 	"D0000000000E",
-	"FGHIJK1MNOPQ1",
+	"liviaK1MNOPQ1",
 	NULL
 	};
-	
-	int		map_width = 12;
-	int		map_height = 8;
 	int		cub;
 	
 	game.map.map = map;

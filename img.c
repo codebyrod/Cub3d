@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 22:35:11 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/20 16:51:07 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/24 22:55:39 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void game_render(t_game *game)
 
 
 
-	// handle_keys(game);
+	// handle_movement(game);
 	mlx_put_image_to_window(game->connection,
 		game->window,
 		game->img.img_ptr,

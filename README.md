@@ -87,9 +87,25 @@ usadas no fractol que me ajudou a entender a minilibx
 ## 🤖 Uso de Inteligência Artificial
 
 ### 0. IA's
-Para este projeto foram usadas sobretudo as IA's da empresa Alphabet, especificamente a NotebookLM e o chatbot Gemini por conta do seu recurso "estudo guiado". Nesse sentido as IA's foram utilizadas como ferramenta de tutoria pedagógica e debugging em raros casos, auxiliando nas seguintes tarefas específicas:
+Usada na maior parte do tempo foi Claude.
+Para dúvidas com git e gitflow foi usado majoritariamente o chatgpt
 
-### 1. Explicação de Conceitos Matemáticos:
+auxiliando nas seguintes tarefas específicas:
+
+### 1. Planejamento
+Ajudou a elaborar um Planejamento de 40 dias para conseguir elaborar o projeto dividindo em tarefas verificáveis, sprint e entregáveis ao final da sprint, vc pode verificar o planejamento aqui.
+
+
+### 2. Explicação de Conceitos Matemáticos:
+
+- Ajudou no cálculo diagonal do movimento do jogador, usando fórmulas mátemáticas (explicar melhor)
+### Normalização de movimento diagonal
+
+Ao somar o deslocamento independentes (x e y) do jogador para cada tecla de movimento (WASD), surgiu um bug clássico de jogos com grid-based movement: pressionar duas teclas perpendiculares ao mesmo tempo (ex: W+D) fazia o jogador se mover na diagonal com velocidade maior (~40%) que em linha reta, já que a distância percorrida é a hipotenusa dos dois deltas somados (`√(dx² + dy²)`), não a soma simples. A solução, sugerida pela IA, foi normalizar o vetor de movimento: somar todos os deltas ativos primeiro, calcular a magnitude do vetor resultante e, se ela exceder a velocidade máxima, reescalar `delta_x`/`delta_y` proporcionalmente (`delta / magnitude * velocidade`) antes de aplicar à posição do jogador — corrigindo o caso geral, com qualquer número de teclas simultâneas, sem precisar enumerar combinações.
+
+
+
+
 - Ajudou a visualizar a diferença entre a iteração do Mandelbrot ($Z$ começa em 0, $C$ muda) e Julia ($Z$ é o pixel, $C$ é constante).
 - Clarificou por que sqrt deve ser evitado em loops de renderização (comparação com raio ao quadrado).
 

@@ -6,7 +6,7 @@
 #    By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/24 07:25:17 by rosousa-          #+#    #+#              #
-#    Updated: 2026/09/02 13:14:26 by rodrigo          ###   ########.fr        #
+#    Updated: 2026/09/25 18:32:24 by rodrigo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRC         = main.c \
               events.c \
               img.c \
               map.c \
-#               string_utils.c \
+              player.c \
+              data_init.c \
+              movement.c \
 #               parse.c \
 
 OBJ         = $(SRC:.c=.o)

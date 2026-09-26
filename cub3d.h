@@ -85,6 +85,10 @@ typedef struct s_player
 	double	delta_x;
 	double	delta_y;
 	double	magnitude;
+	double	dir_x;
+	double	dir_y;
+	double	cam_x;
+	double	cam_y;
 }	t_player;
 
 

@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:52:34 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/25 18:19:10 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/30 21:37:30 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ int	handle_release(int keycode, t_game *game)
 	return (0);
 }
 
-
-
 int	close_handler(t_game *game)
 {
 	mlx_destroy_image(game->connection, game->img.img_ptr);
@@ -75,9 +73,6 @@ int	close_handler(t_game *game)
 
 void	events_init(t_game *game)
 {
-	// mlx_hook(game->window, KeyPress, KeyPressMask,
-		// handle_movement,  game);
-	
 	//FAZER DOIS KEY_HOOK. PRESS E RELEASE
 	
 	//PRESS

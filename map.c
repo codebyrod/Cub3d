@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/02 13:10:07 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/22 15:48:41 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/30 23:27:45 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 	int				conv_bit_to_byte;
 	char			*addr_to_drawing;
 	unsigned int	*int_addr_drawing;
+
+	if (x < 0 || y < 0 || x > WIDTH || y > HEIGHT)
+	{
+		//Melhorar isso aqui
+		printf("X ou Y acessando pixel fora dos limites\n");
+		exit(1);
+	}
 
 	conv_bit_to_byte = (img->bits_per_pixel / 8);
 	displacement = (img->size_len * y) + (x * conv_bit_to_byte);
@@ -62,12 +69,13 @@ void	map_render(t_game *game)
 		j = 0;
 		while (j < game->map.map_height)
 		{
+			// printf("MAP[%d][%d] = %c\n", j, i, game->map.map[j][i]);
 			if(game->map.map[j][i] == '0')
 				put_tile(game, TILE_SIZE, i*TILE_SIZE, j*TILE_SIZE, BLUE);
 			else if (game->map.map[j][i] > 'A')
-				put_tile(game, TILE_SIZE, i*TILE_SIZE, j*TILE_SIZE, YELLOW);
-			else
 				put_tile(game, TILE_SIZE, i*TILE_SIZE, j*TILE_SIZE, RED);
+			else
+				put_tile(game, TILE_SIZE, i*TILE_SIZE, j*TILE_SIZE, YELLOW);
 			j++;
 		}
 		i++;

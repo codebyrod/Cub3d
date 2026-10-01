@@ -6,11 +6,25 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 16:55:50 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/25 17:41:26 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/01 19:48:06 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	key_mov_init(t_game *game)
+{
+	game->keys.w =	BOOL_FALSE;
+	game->keys.a =	BOOL_FALSE;
+	game->keys.s =	BOOL_FALSE;
+	game->keys.d =	BOOL_FALSE;
+	game->keys.a_up = BOOL_FALSE;
+	game->keys.a_right = BOOL_FALSE;
+	game->keys.a_left =	BOOL_FALSE;
+	game->keys.a_bottom = BOOL_FALSE;
+	game->keys.x = 0;
+	game->keys.esc = 0;
+}
 
 void	pos_init_player(t_game *game)
 {
@@ -32,16 +46,29 @@ void	pos_init_player(t_game *game)
 		}	
 		i++;
 	}
-
 }
 
-void	data_init(t_game *game)
+void	player_init(t_game *game)
 {
 	pos_init_player(game);
 	game->play.play_x = game->play.pos_init_X + 0.3;
 	game->play.play_y = game->play.pos_init_Y + 0.3;
+	game->play.radius = (PLAYER_SIZE / TILE_SIZE) / 2.0;
 	game->play.delta_x = 0;
 	game->play.delta_y = 0;
-	game->time.last_frame_time = 0;
-	
+	game->play.magnitude = 0;
+	game->play.dir_x = 0;
+	game->play.dir_y = 0;
+	game->play.cam_x = 0;
+	game->play.cam_y = 0;
+}
+
+void	data_init(t_game *game)
+{
+	struct timeval tv;
+
+	key_mov_init(game);
+	player_init(game);
+	gettimeofday(&tv, NULL);
+	game->time.last_frame_time = tv.tv_sec + (tv.tv_usec / 1000000.0);
 }

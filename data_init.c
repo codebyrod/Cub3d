@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 16:55:50 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/01 19:48:06 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/01 23:59:09 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	player_init(t_game *game)
 	pos_init_player(game);
 	game->play.play_x = game->play.pos_init_X + 0.3;
 	game->play.play_y = game->play.pos_init_Y + 0.3;
-	game->play.radius = (PLAYER_SIZE / TILE_SIZE) / 2.0;
+	// game->play.play_x = game->play.pos_init_X;
+	// game->play.play_y = game->play.pos_init_Y;
+	game->play.radius = (((double)PLAYER_SIZE * 1.0) / ((double)TILE_SIZE * 1.0) / 2.0);
 	game->play.delta_x = 0;
 	game->play.delta_y = 0;
 	game->play.magnitude = 0;

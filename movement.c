@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 18:18:21 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/01 20:54:25 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/01 23:25:50 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,42 @@
 
 void	next_move(t_game *game)
 {
-	double tmp_x;
-	double tmp_y;
+	double	tmp_x;
+	double	tmp_y;
+	double	radius_x;
+	double	radius_y;
 
 	tmp_x = game->play.play_x + game->play.delta_x;
-	if (game->map.map[(int)game->play.play_y][(int)tmp_x] == '0')
-	{
+	radius_x = tmp_x;
+	if (game->play.delta_x > 0)
+		radius_x = tmp_x + game->play.radius;
+	else if (game->play.delta_x < 0)
+		radius_x = tmp_x - game->play.radius;
+
+	// PRINT DE TESTE
+	printf("X: play_y=%.3f radius_x=%.3f -> map[%d][%d]=%c\n",
+	game->play.play_y, radius_x,
+	(int)game->play.play_y, (int)radius_x,
+	game->map.map[(int)game->play.play_y][(int)radius_x]);
+
+		
+	if (game->map.map[(int)game->play.play_y][(int)radius_x] == '0')
 		game->play.play_x = tmp_x;
-	}
 	tmp_y = game->play.play_y + game->play.delta_y;
-	if (game->map.map[(int)tmp_y][(int)game->play.play_x] == '0')
-		game->play.play_y = tmp_y;	
+	radius_y = tmp_y;
+	if (game->play.delta_y > 0)
+		radius_y = tmp_y + game->play.radius;
+	else if (game->play.delta_y < 0)
+		radius_y = tmp_y - game->play.radius;
+	
+	//print de teste
+	printf("X: play_y=%.3f radius_x=%.3f -> map[%d][%d]=%c\n",
+	game->play.play_y, radius_x,
+	(int)game->play.play_y, (int)radius_x,
+	game->map.map[(int)game->play.play_y][(int)radius_x]);
+	
+	if (game->map.map[(int)radius_y][(int)game->play.play_x] == '0')
+		game->play.play_y = tmp_y;
 	return ;
 }
 

@@ -82,6 +82,7 @@ typedef struct s_player
 	int		pos_init_X;
 	double	play_x;
 	double	play_y;
+	double	radius;
 	double	delta_x;
 	double	delta_y;
 	double	magnitude;

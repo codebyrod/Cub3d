@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/24 22:48:56 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/01 17:35:57 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,22 @@ void	end_connection(t_game *game)
 // 	free(game->connection);
 // 	exit (EXIT_SUCCESS);
 // }
+
 int cub_init(t_game *game)
 {
+	// printf(" MAP - 1::: map_width=%d map_height=%d\n",
+	// game->map.map_width, game->map.map_height);
+	printf("CHECK 1: width=%d\n", game->map.map_width);
 	cub_connection(game);
+	printf("CHECK 2: width=%d\n", game->map.map_width);
 	data_init(game);
+	// printf(" MAP - 2::: map_width=%d map_height=%d\n",
+	// game->map.map_width, game->map.map_height);
+	printf("CHECK 3: width=%d\n", game->map.map_width);
 	events_init(game);
+	printf("CHECK 4: width=%d\n", game->map.map_width);
 	game_render(game);
+	printf("CHECK 5: width=%d\n", game->map.map_width);
 	// put_img(game);
 	//limpar depois de fechar a janela
 	mlx_loop(game->connection); //mantém a janela aberta

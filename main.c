@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/24 23:16:15 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/09/30 23:14:48 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,19 @@ int	main(void)
 
 	
 	int		map_width = 12;
-	int		map_height = 8;
+	int		map_height = 11;
 	char *map[] = {
-	"murilojhoguel",
-	"nanijoao000o",
-	"p0000000000q",
-	"r000stu0000v",
-	"x000w000000y",
-	"z000000ABC00",
-	"D0000000000E",
-	"liviaK1MNOPQ1",
+	"123456789A12", //
+	"211111110001",
+	"300000000001",
+	"400011100001",
+	"500010000001",
+	"600000011101",
+	"700000000001",
+	"811110011111",
+	"911110011111",
+	"A11110011111",
+	"111111111111",
 	NULL
 	};
 	int		cub;
@@ -70,6 +73,8 @@ int	main(void)
 	if ((game.map.map_width * TILE_SIZE) > WIDTH
 		|| (game.map.map_height * TILE_SIZE) > HEIGHT)
 		printf("Erro, mapa maior que janela\n");
+	// printf(" MAP - Main::: map_width=%d map_height=%d\n",
+	// game.map.map_width, game.map.map_height);
 	cub = cub_init(&game);
 	if (!cub)
 	{

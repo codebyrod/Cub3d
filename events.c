@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:52:34 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/09/30 21:37:30 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/05 22:38:29 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	handle_release(int keycode, t_game *game)
 		game->keys.a_bottom = BOOL_FALSE;
 	else if (keycode == XK_Left)
 		game->keys.a_left = BOOL_FALSE;
-	// printf("A tecla SOLTA foi %d\n", keycode);
+	printf("A tecla SOLTA foi %d\n", keycode);
 	return (0);
 }
 

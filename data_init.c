@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 16:55:50 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/01 23:59:09 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/05 23:14:10 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ void	player_init(t_game *game)
 	game->play.delta_y = 0;
 	game->play.magnitude = 0;
 	game->play.dir_x = 0;
-	game->play.dir_y = 0;
+	game->play.dir_y = 1;
+
+	//Esse angle precisa ser em radianos
+	game->play.angle = 0;
 	game->play.cam_x = 0;
 	game->play.cam_y = 0;
 }

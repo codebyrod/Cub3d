@@ -16,10 +16,12 @@
 # define TILE_SIZE 20
 # define PLAYER_SIZE 10
 # define SPEED_SEC 3
+# define ROT_SPEED_SEC 90
 # define RED	0xcc3bd1
 # define BLUE	0X124ac4
 # define YELLOW	0xddb70d
 # define VIOLET	0X70034c
+# define PINK	0xf3c3f3
 
 typedef enum e_status_malloc
 {
@@ -88,6 +90,7 @@ typedef struct s_player
 	double	magnitude;
 	double	dir_x;
 	double	dir_y;
+	double	angle;
 	double	cam_x;
 	double	cam_y;
 }	t_player;

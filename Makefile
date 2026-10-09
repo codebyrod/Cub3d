@@ -6,7 +6,7 @@
 #    By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/24 07:25:17 by rosousa-          #+#    #+#              #
-#    Updated: 2026/09/25 18:32:24 by rodrigo          ###   ########.fr        #
+#    Updated: 2026/10/07 22:08:15 by rodrigo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,12 @@ SRC         = main.c \
               err_init_cub.c \
               includes/aux.c \
               events.c \
-              img.c \
+              game_render.c \
               map.c \
               player.c \
               data_init.c \
               movement.c \
+              ray.c \
 #               parse.c \
 
 OBJ         = $(SRC:.c=.o)

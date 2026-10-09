@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 18:18:21 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/06 00:45:39 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/07 19:44:51 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,28 @@ void	calc_angle(t_game *game)
 {
 	double	tmp_x;
 	double	tmp_y;
+	double	tmp_cam_x;
+	double	tmp_cam_y;
 	double	ang;
 
 	ang = 0;
 	if (game->keys.a_left == BOOL_TRUE)
 		ang += ROT_SPEED_SEC * game->time.delta_time;
 	if (game->keys.a_right == BOOL_TRUE)
-		ang -= ROT_SPEED_SEC * game->time.delta_time;
-	
+		ang -= ROT_SPEED_SEC * game->time.delta_time;	
 	ang = ang * (M_PI / 180.0);
-		
 	tmp_x = game->play.dir_x * cos(ang) - game->play.dir_y * sin(ang);
 	tmp_y = game->play.dir_x * sin(ang) + game->play.dir_y * cos(ang);
-		
+	tmp_cam_x = game->play.cam_x * cos(ang) - game->play.cam_y * sin(ang);
+	tmp_cam_y = game->play.cam_x * sin(ang) + game->play.cam_y * cos(ang);
 	game->play.dir_x = tmp_x;
 	game->play.dir_y = tmp_y;
+	game->play.cam_x = tmp_cam_x;
+	game->play.cam_y = tmp_cam_y;
 
-	printf("magnitude dir: %f\n", sqrt(game->play.dir_x * game->play.dir_x + game->play.dir_y * game->play.dir_y));
+	// printf("left=%d right=%d dir=(%.3f, %.3f)\n",
+	// game->keys.a_left, game->keys.a_right,
+	// game->play.dir_x, game->play.dir_y);
 }
 
 

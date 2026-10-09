@@ -17,8 +17,12 @@
 # define PLAYER_SIZE 10
 # define SPEED_SEC 3
 # define ROT_SPEED_SEC 90
+# define RAY_STEP 0.01
+# define RAY_MAX_DIST 50.0
 # define RED	0xcc3bd1
-# define BLUE	0X124ac4
+# define GRAY	0x414755
+# define BLUE	0x164cca
+# define GREEN	0X168a06
 # define YELLOW	0xddb70d
 # define VIOLET	0X70034c
 # define PINK	0xf3c3f3
@@ -77,6 +81,23 @@ typedef struct s_map
 	int		map_width;
 	int		map_height;
 }	t_map;
+
+typedef enum e_side
+{
+	SIDE_NONE,
+	SIDE_N,
+	SIDE_S,
+	SIDE_E,
+	SIDE_W
+}	t_side;
+
+typedef struct s_hit
+{
+	double	dist;
+	t_side	side;
+	double	hit_x;
+	double	hit_y;
+}	t_hit;
 
 typedef struct s_player
 {
@@ -146,5 +167,12 @@ void	pos_init_player(t_game *game);
 
 //movements
 int		handle_movement(t_game *game);
+
+
+//raycasting
+t_hit	cast_ray(t_game *game, double ray_dx, double ray_dy);
+void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy);
+void	test_ray(t_game *game);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 21:57:18 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/07 22:24:32 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/14 23:30:54 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,23 @@ static int	is_wall_at(t_game *game, double x, double y)
 	int	cx;
 	int	cy;
 
+	//verifica se está fora das paredes
 	if (x < 0 || y < 0)
 		return (1);
+	
+	//converte para numeros discretos, célula
 	cx = (int)x;
 	cy = (int)y;
+	
+	//verifica se é maior que a janela
 	if (cx >= game->map.map_width || cy >= game->map.map_height)
 		return (1);
-	return (game->map.map[cy][cx] != '0');
+	
+	//verifica se é chão ou parede
+	if (game->map.map[cy][cx] != '0')
+		return (1);
+
+	return (0);
 }
 
 static t_side	get_side(int prev_x, int cx, double ray_dx, double ray_dy)
@@ -64,10 +74,15 @@ t_hit	cast_ray(t_game *game, double ray_dx, double ray_dy)
 		//fórmula da equação paramétrica
 		hit.hit_x = game->play.play_x + ray_dx * t;
 		hit.hit_y = game->play.play_y + ray_dy * t;
+		
+		//é parede?
 		is_wall = is_wall_at(game, hit.hit_x, hit.hit_y);
+		
 		if (is_wall)
 		{
 			hit.dist = t;
+			
+			//pq eu preciso pegar o lado?
 			hit.side = get_side(prev_x, (int)hit.hit_x, ray_dx, ray_dy);
 			return (hit);
 		}

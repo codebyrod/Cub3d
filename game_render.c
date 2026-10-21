@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 22:35:11 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/07 22:07:00 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/20 19:06:54 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,19 @@ void	test_ray(t_game *game)
 void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy)
 {
 	t_hit	hit;
-	double	t;
+	double	ray_dist;
 	int		px;
 	int		py;
 
+	
 	hit = cast_ray(game, ray_dx, ray_dy);
-	t = 0;
-	while (t < hit.dist)
+	ray_dist = 0;
+	while (ray_dist < hit.dist)
 	{
-		px = (game->play.play_x + ray_dx * t) * TILE_SIZE;
-		py = (game->play.play_y + ray_dy * t) * TILE_SIZE;
+		px = (game->play.play_x + ray_dx * ray_dist) * TILE_SIZE;
+		py = (game->play.play_y + ray_dy * ray_dist) * TILE_SIZE;
 		my_pixel_put(&game->img, px, py, GREEN);
-		t += 0.02;
+		ray_dist += 0.02;
 	}
 }
 
@@ -50,6 +51,8 @@ void game_render(t_game *game)
 	map_render(game);
 	// put_tile(game, 400, 0, 0, RED);
 	player_render(game);
+
+	//escrevemos uma função de teste para ver o raio
 	draw_ray_debug(game, game->play.dir_x, game->play.dir_y);
 	test_ray(game);
 	// handle_movement(game);

@@ -6,61 +6,61 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 21:57:18 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/20 21:47:27 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/29 18:49:54 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	is_wall_at(t_game *game, double x, double y)
+//precisamos de uma função para avançar pelo eixo mais próximo
+void	advance_ray(t_ray *ray)
 {
-	int	cx;
-	int	cy;
-
-	//verifica se está fora das paredes
-	if (x < 0 || y < 0)
-		return (1);
-	
-	//converte para numeros discretos, célula
-	cx = (int)x;
-	cy = (int)y;
-	
-	//verifica se é maior que a janela
-	if (cx >= game->map.map_width || cy >= game->map.map_height)
-		return (1);
-	
-	//verifica se é chão ou parede
-	if (game->map.map[cy][cx] != '0')
-		return (1);
-
-	return (0);
+	if (ray->side_dist_x < ray->side_dist_y)
+	{
+		ray->dist = ray->side_dist_x;
+		ray->side_dist_x += ray->delta_dist_x;
+		ray->map_x += ray->step_x;
+		ray->side = 0;
+	}
+	else
+	{
+		ray->dist = ray->side_dist_y;
+		ray->side_dist_y += ray->delta_dist_y;
+		ray->map_y += ray->step_y;
+		ray->side = 1;
+	}
 }
 
-static t_side	get_side(int prev_x, int cx, double ray_dx, double ray_dy)
+//preciso de uma função para percorrer as células até encontrar parede ou limite 
+t_hit	trace_ray(t_game *game, t_ray *ray, t_hit hit)
 {
-	// o raio atravessou a parede?
-	// a coluna mudou entre o passo anterior e o atual?
-	//atrevssou uma fronteira vertical?
-	//coluna antes é igual a anterior? atravessou uma coluna
-	if (cx != prev_x)
+	while (ray->dist < RAY_MAX_DIST)
 	{
-		//se sim, verifica se é maior que 0
-		if (ray_dx > 0)
-			return (SIDE_W);
-		return (SIDE_E);
+		advance_ray(ray);
+		if (ray->dist >= RAY_MAX_DIST)
+			return (hit);
+		if (is_wall_at(game, ray->map_x, ray->map_y))
+		{
+			set_hit(game, ray, &hit);
+			return (hit);
+		}
 	}
-	//se não mudou a coluna, muda a linha então
-	if (ray_dy > 0)
-		return (SIDE_N);
-	return (SIDE_S);
+	return (hit);
+}
+
+void	init_ray(t_game *game, t_ray *ray, double ray_dx, double ray_dy)
+{
+	ray->ray_dx = ray_dx;
+	ray->ray_dy = ray_dy;
+	ray->map_x = (int)game->play.play_x;
+	ray->map_y = (int)game->play.play_y;
+	ray->dist = 0.0;
 }
 
 t_hit	cast_ray(t_game *game, double ray_dx, double ray_dy)
 {
 	t_hit	hit;
-	double	ray_dist;
-	int		prev_x;
-	int		is_wall;
+	t_ray	ray;
 
 	hit.dist = RAY_MAX_DIST;
 	hit.side = SIDE_NONE;
@@ -68,31 +68,22 @@ t_hit	cast_ray(t_game *game, double ray_dx, double ray_dy)
 	// defnimos a posição inicial do jogador
 	hit.hit_x = game->play.play_x;
 	hit.hit_y = game->play.play_y;
-	prev_x = (int)game->play.play_x;
-	ray_dist = 0;
 
-	//precismao de um laço para rodar enquanto o pedaço do raio não bate em uma parede
-	while (ray_dist < RAY_MAX_DIST)
-	{
-		//tem que incrementar os pedaços do raio com ele mesmo
-		ray_dist += RAY_STEP;
+	//
+	if (ray_dx == 0.0 && ray_dy == 0.0)
+		return (hit);
+	
+	//função de inicialização da struct ray
 
-		//fórmula da equação paramétrica
-		hit.hit_x = game->play.play_x + ray_dx * ray_dist;
-		hit.hit_y = game->play.play_y + ray_dy * ray_dist;
-		
-		//é parede?
-		is_wall = is_wall_at(game, hit.hit_x, hit.hit_y);
-		
-		if (is_wall)
-		{
-			hit.dist = ray_dist;
-			
-			//precisamos pegar o lado para saber que lado o raio bateu.
-			hit.side = get_side(prev_x, (int)hit.hit_x, ray_dx, ray_dy);
-			return (hit);
-		}
-		prev_x = (int)hit.hit_x;
-	}
-	return (hit);
+	//define a direção do raio e a célula inicial
+	init_ray(game, &ray, ray_dx, ray_dy);
+	
+	//calcula os intervalos e a primeira fronteira que cada eixo alcançara
+	init_ray_delta(&ray);
+	init_ray_step_x(game, &ray);
+	init_ray_step_y(game, &ray);
+	
+	//retorna a struct com a colisão
+	hit = trace_ray(game, &ray, hit);
+	return (hit);	
 }

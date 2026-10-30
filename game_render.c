@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 22:35:11 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/20 19:06:54 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/29 21:59:56 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,27 @@ void	test_ray(t_game *game)
 		hit.dist, hit.side, hit.hit_x, hit.hit_y);
 }
 
+// Dispara um raio para cada coluna horizontal da tela.
+void	draw_camera_rays(t_game *game)
+{
+	int		screen_x;
+	double	ray_dx;
+	double	ray_dy;
+
+	screen_x = 0;
+	// Percorre todas as colunas da janela.
+	while (screen_x < WIDTH)
+	{
+		// Calcula a direção do raio correspondente à coluna.
+		get_camera_ray(game, screen_x, &ray_dx, &ray_dy);
+		// Executa o DDA e desenha a trajetória desse raio.
+		draw_ray_debug(game, ray_dx, ray_dy);
+		screen_x++;
+	}
+}
+
+
+// Desenha um raio individual no minimapa.
 void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy)
 {
 	t_hit	hit;
@@ -33,14 +54,22 @@ void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy)
 	int		px;
 	int		py;
 
-	
+	// Executa o DDA e descobre onde o raio encontra uma parede.
 	hit = cast_ray(game, ray_dx, ray_dy);
 	ray_dist = 0;
+
+	// Percorre o raio até a distância do ponto de colisão.
 	while (ray_dist < hit.dist)
 	{
+		
+		// Converte as coordenadas do mundo para pixels do minimapa.
 		px = (game->play.play_x + ray_dx * ray_dist) * TILE_SIZE;
 		py = (game->play.play_y + ray_dy * ray_dist) * TILE_SIZE;
+		
+		// Desenha o ponto atual do raio.
 		my_pixel_put(&game->img, px, py, GREEN);
+		
+		// Avança um pequeno intervalo na trajetória do raio.
 		ray_dist += 0.02;
 	}
 }
@@ -53,8 +82,12 @@ void game_render(t_game *game)
 	player_render(game);
 
 	//escrevemos uma função de teste para ver o raio
-	draw_ray_debug(game, game->play.dir_x, game->play.dir_y);
-	test_ray(game);
+	// draw_ray_debug(game, game->play.dir_x, game->play.dir_y);
+
+	// Desenha todos os raios da câmera.
+	draw_camera_rays(game);
+
+	// test_ray(game);
 	// handle_movement(game);
 	mlx_put_image_to_window(game->connection,
 		game->window,

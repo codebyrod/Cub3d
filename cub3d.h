@@ -19,6 +19,7 @@
 # define ROT_SPEED_SEC 90
 # define RAY_STEP 0.01
 # define RAY_MAX_DIST 50.0
+# define FOV_DEG 66.0
 # define RED	0xcc3bd1
 # define GRAY	0x414755
 # define BLUE	0x164cca
@@ -91,6 +92,24 @@ typedef enum e_side
 	SIDE_W
 }	t_side;
 
+typedef struct s_ray
+{
+	double	ray_dx;
+	double	ray_dy;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	dist;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+}	t_ray;
+
+
+
 typedef struct s_hit
 {
 	double	dist;
@@ -154,6 +173,8 @@ void	map_render(t_game *game);
 
 //player
 void	player_render(t_game *game);
+void	player_init(t_game *game);
+
 
 
 //events
@@ -165,14 +186,29 @@ void	events_init(t_game *game);
 void	data_init(t_game *game);
 void	pos_init_player(t_game *game);
 
+
 //movements
 int		handle_movement(t_game *game);
 
 
 //raycasting
+void	advance_ray(t_ray *ray);
 t_hit	cast_ray(t_game *game, double ray_dx, double ray_dy);
 void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy);
+t_side	get_side(t_ray *ray);
+void	init_ray(t_game *game, t_ray *ray, double ray_dx, double ray_dy);
+void	init_ray_delta(t_ray *ray);
+void	init_ray_step_x(t_game *game, t_ray *ray);
+void	init_ray_step_y(t_game *game, t_ray *ray);
+int		is_wall_at(t_game *game, double x, double y);
 void	test_ray(t_game *game);
+t_hit	trace_ray(t_game *game, t_ray *ray, t_hit hit);
+void	set_hit(t_game *game, t_ray *ray, t_hit *hit);
+void	get_camera_ray(t_game *game, int screen_x, double *ray_dx, double *ray_dy);
+
+//camera
+void	init_camera_plane(t_game *game);
+void	draw_camera_rays(t_game *game);
 
 
 #endif

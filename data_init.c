@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 16:55:50 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/05 23:14:10 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/29 21:50:46 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,22 @@ void	player_init(t_game *game)
 
 	//Esse angle precisa ser em radianos
 	game->play.angle = 0;
-	game->play.cam_x = 0;
-	game->play.cam_y = 0;
+	init_camera_plane(game);
+}
+
+
+// o plano da camera precisa ser perpendicular ao vetor de direção. o comprimento determina o campo de visão horizontal.
+void	init_camera_plane(t_game *game)
+{
+	double	plane_length;
+
+	// Calcula o comprimento necessário para o FOV escolhido.
+	plane_length = tan((FOV_DEG * M_PI / 180.0) / 2.0);
+
+	// Cria um vetor perpendicular à direção do jogador.
+	// Para dir = (0, 1), o resultado será (-1, 0) * plane_length.
+	game->play.cam_x = -game->play.dir_y * plane_length;
+	game->play.cam_y = game->play.dir_x * plane_length;
 }
 
 void	data_init(t_game *game)
@@ -73,6 +87,7 @@ void	data_init(t_game *game)
 	struct timeval tv;
 
 	key_mov_init(game);
+	// init_camera_plane(game);
 	player_init(game);
 	gettimeofday(&tv, NULL);
 	game->time.last_frame_time = tv.tv_sec + (tv.tv_usec / 1000000.0);

@@ -27,6 +27,7 @@
 # define YELLOW	0xddb70d
 # define VIOLET	0X70034c
 # define PINK	0xf3c3f3
+# define WALL	0x1a7a3a
 
 typedef enum e_status_malloc
 {
@@ -178,7 +179,6 @@ void	player_init(t_game *game);
 
 
 //events
-int		handle_movement(t_game *game);
 int		close_handler(t_game *game);
 void	events_init(t_game *game);
 
@@ -189,6 +189,14 @@ void	pos_init_player(t_game *game);
 
 //movements
 int		handle_movement(t_game *game);
+int		is_player_colliding(t_game *game, double x, double y);
+void	move_player_dir(t_game *game, double forward, double strafe);
+void	next_move(t_game *game);
+void	calc_angle(t_game *game);
+void	calc_coord_delta(t_game *game);
+
+
+
 
 
 //raycasting
@@ -209,6 +217,13 @@ void	get_camera_ray(t_game *game, int screen_x, double *ray_dx, double *ray_dy);
 //camera
 void	init_camera_plane(t_game *game);
 void	draw_camera_rays(t_game *game);
+
+//walls
+double	calc_perp_dist(t_game *game, t_hit hit);
+int		calc_wall_height(double perp_dist);
+void	draw_wall_column(t_game *game, int x, int wall_h);
+void	render_wall_column(t_game *game, int x);
+void	render_walls(t_game *game);
 
 
 #endif

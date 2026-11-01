@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 22:35:11 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/29 21:59:56 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/31 21:56:26 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,27 @@
 
 //construir o jogador
 //calculo da movimentação do jogador
+
+void	clear_screen(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			if (y < HEIGHT / 2)
+				my_pixel_put(&game->img, x, y, 0x555555);
+			else
+				my_pixel_put(&game->img, x, y, 0x888888);
+			x++;
+		}
+		y++;
+	}
+}
 
 void	test_ray(t_game *game)
 {
@@ -77,15 +98,21 @@ void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy)
 
 void game_render(t_game *game)
 {
-	map_render(game);
+	// map_render(game);
 	// put_tile(game, 400, 0, 0, RED);
-	player_render(game);
+	// player_render(game);
 
 	//escrevemos uma função de teste para ver o raio
 	// draw_ray_debug(game, game->play.dir_x, game->play.dir_y);
 
 	// Desenha todos os raios da câmera.
-	draw_camera_rays(game);
+	// draw_camera_rays(game);
+
+	//desenha o teto e o chão
+	clear_screen(game);
+	
+	//Projeta as paredes na tela.
+	render_walls(game);
 
 	// test_ray(game);
 	// handle_movement(game);

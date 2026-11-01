@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 15:55:32 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/30 17:47:36 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/31 23:32:49 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,22 @@ int	is_wall_at(t_game *game, double x, double y)
 	return (0);
 }
 
+int	is_player_colliding(t_game *game, double x, double y)
+{
+	double radius;
 
+	radius = game->play.radius + 0.02;
+	
+	if (is_wall_at(game, x - radius, y))
+		return (1);
+	if (is_wall_at(game, x + radius, y))
+		return (1);
+	if (is_wall_at(game, x, y - radius))
+		return (1);
+	if (is_wall_at(game, x, y + radius))
+		return (1);
+	return (0);
+	
+}
 
 

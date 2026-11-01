@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 18:42:07 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/30 23:00:03 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/10/31 23:51:13 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 //vamos ter que calcular a distância perpendicular para evitar distorção olho de peixe
 double calc_perp_dist(t_game *game, t_hit hit)
 {
-
-	
 	//preciso da posição do jogador
 	//preciso da distância da parede
 	//preciso dos raios
@@ -25,7 +23,6 @@ double calc_perp_dist(t_game *game, t_hit hit)
 	double	delta_x;
 	double	delta_y;
 	double	distance;
-
 
 	//colisão
 

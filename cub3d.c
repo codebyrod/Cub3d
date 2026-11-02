@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/01 17:35:57 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/11/02 00:16:08 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ int cub_init(t_game *game)
 	printf("CHECK 1: width=%d\n", game->map.map_width);
 	cub_connection(game);
 	printf("CHECK 2: width=%d\n", game->map.map_width);
+	
+	// APPAGAR DEPOIS, SÓ DE TESTE DA TEXTURA
+	textures_init(game);
+	if (textures_init(game))
+	{
+		printf("Error\nFailed to load textures\n");
+		exit(EXIT_FAILURE);
+	}
+	
 	data_init(game);
 	// printf(" MAP - 2::: map_width=%d map_height=%d\n",
 	// game->map.map_width, game->map.map_height);

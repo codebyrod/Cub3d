@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 22:35:11 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/31 21:56:26 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/11/01 20:14:12 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,52 +48,52 @@ void	test_ray(t_game *game)
 }
 
 // Dispara um raio para cada coluna horizontal da tela.
-void	draw_camera_rays(t_game *game)
-{
-	int		screen_x;
-	double	ray_dx;
-	double	ray_dy;
+// void	draw_camera_rays(t_game *game)
+// {
+// 	int		screen_x;
+// 	double	ray_dx;
+// 	double	ray_dy;
 
-	screen_x = 0;
-	// Percorre todas as colunas da janela.
-	while (screen_x < WIDTH)
-	{
-		// Calcula a direção do raio correspondente à coluna.
-		get_camera_ray(game, screen_x, &ray_dx, &ray_dy);
-		// Executa o DDA e desenha a trajetória desse raio.
-		draw_ray_debug(game, ray_dx, ray_dy);
-		screen_x++;
-	}
-}
+// 	screen_x = 0;
+// 	// Percorre todas as colunas da janela.
+// 	while (screen_x < WIDTH)
+// 	{
+// 		// Calcula a direção do raio correspondente à coluna.
+// 		get_camera_ray(game, screen_x, &ray_dx, &ray_dy);
+// 		// Executa o DDA e desenha a trajetória desse raio.
+// 		draw_ray_debug(game, ray_dx, ray_dy);
+// 		screen_x++;
+// 	}
+// }
 
 
 // Desenha um raio individual no minimapa.
-void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy)
-{
-	t_hit	hit;
-	double	ray_dist;
-	int		px;
-	int		py;
+// void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy)
+// {
+// 	t_hit	hit;
+// 	double	ray_dist;
+// 	int		px;
+// 	int		py;
 
-	// Executa o DDA e descobre onde o raio encontra uma parede.
-	hit = cast_ray(game, ray_dx, ray_dy);
-	ray_dist = 0;
+// 	// Executa o DDA e descobre onde o raio encontra uma parede.
+// 	hit = cast_ray(game, ray_dx, ray_dy);
+// 	ray_dist = 0;
 
-	// Percorre o raio até a distância do ponto de colisão.
-	while (ray_dist < hit.dist)
-	{
+// 	// Percorre o raio até a distância do ponto de colisão.
+// 	while (ray_dist < hit.dist)
+// 	{
 		
-		// Converte as coordenadas do mundo para pixels do minimapa.
-		px = (game->play.play_x + ray_dx * ray_dist) * TILE_SIZE;
-		py = (game->play.play_y + ray_dy * ray_dist) * TILE_SIZE;
+// 		// Converte as coordenadas do mundo para pixels do minimapa.
+// 		px = (game->play.play_x + ray_dx * ray_dist) * TILE_SIZE;
+// 		py = (game->play.play_y + ray_dy * ray_dist) * TILE_SIZE;
 		
-		// Desenha o ponto atual do raio.
-		my_pixel_put(&game->img, px, py, GREEN);
+// 		// Desenha o ponto atual do raio.
+// 		my_pixel_put(&game->img, px, py, GREEN);
 		
-		// Avança um pequeno intervalo na trajetória do raio.
-		ray_dist += 0.02;
-	}
-}
+// 		// Avança um pequeno intervalo na trajetória do raio.
+// 		ray_dist += 0.02;
+// 	}
+// }
 
 
 void game_render(t_game *game)

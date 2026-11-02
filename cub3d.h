@@ -69,6 +69,8 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		endian;
 	int		size_len;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_pxl
@@ -136,6 +138,25 @@ typedef struct s_player
 	double	cam_y;
 }	t_player;
 
+typedef struct s_wall
+{
+	int	draw_start;
+	int	draw_end;
+	int	wall_top;
+	int	tex_x;
+	int	tex_y;
+	int	y;
+	int	color;
+}	t_wall;
+
+typedef struct s_textures
+{
+	t_img	north;
+	t_img	south;
+	t_img	east;
+	t_img	west;
+}	t_textures;
+
 
 typedef struct s_game
 {
@@ -149,6 +170,7 @@ typedef struct s_game
 	t_map		map;
 	t_keys		keys;
 	t_time		time;
+	t_textures	textures;
 }	t_game;
 
 // FUNÇÕES PRINCIPAIS
@@ -221,9 +243,18 @@ void	draw_camera_rays(t_game *game);
 //walls
 double	calc_perp_dist(t_game *game, t_hit hit);
 int		calc_wall_height(double perp_dist);
-void	draw_wall_column(t_game *game, int x, int wall_h);
+void	draw_wall_column(t_game *game, int x, int wall_h, t_hit hit);
 void	render_wall_column(t_game *game, int x);
 void	render_walls(t_game *game);
 
+//texture
+int		load_texture(t_game *game, t_img *texture, char *path);
+t_img	*get_wall_texture(t_game *game, t_side	side);
+int		get_texture_x(t_hit hit, t_img *textures);
+int		get_texture_color(t_img *texture, int x, int y);
+
+
+//textura mockada
+int	textures_init(t_game *game);
 
 #endif

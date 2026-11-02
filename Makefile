@@ -6,7 +6,7 @@
 #    By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/24 07:25:17 by rosousa-          #+#    #+#              #
-#    Updated: 2026/10/30 19:48:29 by rodrigo          ###   ########.fr        #
+#    Updated: 2026/11/01 23:47:38 by rodrigo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC         = main.c \
               movement.c \
               ray.c \
               ray_utils.c \
+              textures.c \
               wall.c \
 #               parse.c \
 

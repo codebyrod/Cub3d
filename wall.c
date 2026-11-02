@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 18:42:07 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/31 23:51:13 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/11/02 00:22:59 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,33 +64,43 @@ int	calc_wall_height(double perp_dist)
 }
 
 //agora precisamos desenhar a faixa vertical da parede
-void	draw_wall_column(t_game *game, int x, int wall_h)
+void	draw_wall_column(t_game *game, int x, int wall_h, t_hit hit)
 {
-	int draw_start;
-	int draw_end;
-	int	y;
+	t_wall	wall;
+	t_img	*texture;
 	
+	texture = get_wall_texture(game, hit.side);
+	if (!texture)
+		return ;
+
+	wall.wall_top = (HEIGHT - wall_h) / 2;
+	wall.draw_start = wall.wall_top;
+	wall.draw_end = wall.wall_top + wall_h;
 	//precisamos deixar a parede centralizada
 	//vamos calc o tamanho da parede e dividir por doi
-	draw_start = (HEIGHT - wall_h) / 2;
-	draw_end = (HEIGHT + wall_h) / 2;
+	// wall.draw_start = (HEIGHT - wall_h) / 2;
+	// wall.draw_end = (HEIGHT + wall_h) / 2;
 
 	//Impede que a parede ultrapassae o topo da tela.
-	if (draw_start < 0)
-		draw_start = 0;
+	if (wall.draw_start < 0)
+		wall.draw_start = 0;
 	
 	//Impede que a parede ultrapasse a parte inferior.
-	if (draw_end > HEIGHT)
-		draw_end = HEIGHT;
+	if (wall.draw_end > HEIGHT)
+		wall.draw_end = HEIGHT;
 	
 	//temos que controlar para ela não subir nem descer demais
-	y = draw_start;
+	// wall.y = wall.draw_start;
+	wall.tex_x = get_texture_x(hit, texture);
+	wall.y = wall.draw_start;
 
 	//precisamos desenhar a parede
-	while (y < draw_end)
+	while (wall.y < wall.draw_end)
 	{
-		my_pixel_put(&game->img, x, y, WALL);
-		y++;
+		wall.tex_y = ((wall.y - wall.wall_top) * texture->height) / wall_h;
+		wall.color = get_texture_color(texture, wall.tex_x, wall.tex_y);
+		my_pixel_put(&game->img, x, wall.y, wall.color);
+		wall.y++;
 	}
 	return ;
 }
@@ -108,6 +118,9 @@ void	render_wall_column(t_game *game, int x)
 	
 	//agora vamos pegar a primeira coluna atingida pelo raio
 	hit = cast_ray(game, ray_dx, ray_dy);
+
+	if (hit.side == SIDE_NONE)
+		return ;
 	
 	//agora vamos pegar a faixa perpendicular da colisão
 	perp_dist = calc_perp_dist(game, hit);
@@ -117,7 +130,7 @@ void	render_wall_column(t_game *game, int x)
 	wall_height = calc_wall_height(perp_dist);
 	
 	//e por ultimo vamos desenhar
-	draw_wall_column(game, x, wall_height);
+	draw_wall_column(game, x, wall_height, hit);
 
 	return ;
 }

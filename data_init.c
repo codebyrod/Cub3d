@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 16:55:50 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/29 21:50:46 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/11/02 00:06:29 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,19 @@ void	pos_init_player(t_game *game)
 {
 	int	i;
 	int	j;
+
+	printf("MAP POINTER: %p\n", (void *)game->map.map);
+	printf("MAP WIDTH: %d\n", game->map.map_width);
+	printf("MAP HEIGHT: %d\n", game->map.map_height);
+	
 	i = 0;
 	while (i < game->map.map_width)
 	{
 		j = 0;
 		while (j < game->map.map_height)
 		{
+			printf("Acessando [%d][%d]\n", j, i);
+			printf("Linha: %s\n", game->map.map[j]);
 			if (game->map.map[j][i] == '0')
 			{
 				game->play.pos_init_X = i;

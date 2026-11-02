@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/30 18:42:07 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/02 00:22:59 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/11/02 00:34:45 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	calc_wall_height(double perp_dist)
 	wall_height = focal_length / perp_dist;
 
 	//Limita a altura para evitar valores excessivos
-	if (wall_height > HEIGHT * 2)
-		wall_height = HEIGHT * 2;
+	// if (wall_height > HEIGHT * 2)
+	// 	wall_height = HEIGHT * 2;
 	
 	return ((int)wall_height);	
 }

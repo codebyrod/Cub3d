@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/10/05 19:14:31 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/11/02 21:58:03 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,13 @@ int	main(void)
 	"211111110001",
 	"300000000001",
 	"400011100001",
+	"400011100001",
+	"400011100001",
 	"500010000001",
+	"500010000001",
+	"400011100001",
+	"700000000001",
+	"600000011101",
 	"600000011101",
 	"700000000001",
 	"811110011111",
@@ -65,20 +71,23 @@ int	main(void)
 	"111111110111",
 	NULL
 	};
-	int		cub;
 	
 	game.map.map = map;
 	game.map.map_width = map_width;
 	game.map.map_height = map_height;
 	if ((game.map.map_width * TILE_SIZE) > WIDTH
 		|| (game.map.map_height * TILE_SIZE) > HEIGHT)
-		printf("Erro, mapa maior que janela\n");
+	{
+		ft_putstr_fd("Error, map larger than window\n", 2);
+		return (1);		
+	}
+	
 	// printf(" MAP - Main::: map_width=%d map_height=%d\n",
 	// game.map.map_width, game.map.map_height);
-	cub = cub_init(&game);
-	if (!cub)
+	if (!cub_init(&game))
 	{
-		printf("Deu erro na inicialização do cub\n");
+		ft_putstr_fd("Error\n", 2);
+		return (1);
 	}
 	return (0);
 }

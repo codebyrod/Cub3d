@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/02 00:16:08 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/11/02 21:36:01 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,10 @@ int	cub_connection(t_game *game)
 		err_init_cub(game, "img_pixel");
 		return (MALLOC_ERROR);
 	}
-	return (0);
+	return (SUCESS);
 }
 
-void	end_connection(t_game *game)
-{
-	mlx_destroy_window(game->connection, game->window);
-	mlx_destroy_display(game->connection);
-	free(game->connection);
-}
+
 // int	close_handler(t_game *game)
 // {
 // 	mlx_destroy_image(game->connection, game->img.img_ptr);
@@ -63,26 +58,31 @@ int cub_init(t_game *game)
 {
 	// printf(" MAP - 1::: map_width=%d map_height=%d\n",
 	// game->map.map_width, game->map.map_height);
-	printf("CHECK 1: width=%d\n", game->map.map_width);
-	cub_connection(game);
-	printf("CHECK 2: width=%d\n", game->map.map_width);
+	// printf("CHECK 1: width=%d\n", game->map.map_width);
+	
+	if (cub_connection(game))
+	{
+		ft_putstr_fd("Error: Malloc_error\n", 2);
+		return (MALLOC_ERROR);
+	}
+	// printf("CHECK 2: width=%d\n", game->map.map_width);
 	
 	// APPAGAR DEPOIS, SÓ DE TESTE DA TEXTURA
-	textures_init(game);
+	// textures_init(game);
 	if (textures_init(game))
 	{
-		printf("Error\nFailed to load textures\n");
-		exit(EXIT_FAILURE);
+		printf("Error: Texture error\n");
+		return (TEXTURE_ERROR);
 	}
 	
 	data_init(game);
 	// printf(" MAP - 2::: map_width=%d map_height=%d\n",
 	// game->map.map_width, game->map.map_height);
-	printf("CHECK 3: width=%d\n", game->map.map_width);
+	// printf("CHECK 3: width=%d\n", game->map.map_width);
 	events_init(game);
-	printf("CHECK 4: width=%d\n", game->map.map_width);
+	// printf("CHECK 4: width=%d\n", game->map.map_width);
 	game_render(game);
-	printf("CHECK 5: width=%d\n", game->map.map_width);
+	// printf("CHECK 5: width=%d\n", game->map.map_width);
 	// put_img(game);
 	//limpar depois de fechar a janela
 	mlx_loop(game->connection); //mantém a janela aberta

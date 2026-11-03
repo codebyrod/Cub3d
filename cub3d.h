@@ -11,8 +11,8 @@
 # include "X11/X.h"
 # include "includes/includes.h"
 
-# define HEIGHT 400
-# define WIDTH 400
+# define HEIGHT 800
+# define WIDTH 800
 # define TILE_SIZE 20
 # define PLAYER_SIZE 10
 # define SPEED_SEC 3
@@ -29,11 +29,12 @@
 # define PINK	0xf3c3f3
 # define WALL	0x1a7a3a
 
-typedef enum e_status_malloc
+typedef enum e_status_error
 {
-	MALLOC_SUCESS,
-	MALLOC_ERROR
-}	t_status_malloc;
+	SUCESS,
+	MALLOC_ERROR,
+	TEXTURE_ERROR,
+}	t_status_error;
 
 typedef	enum	e_bool
 {
@@ -171,6 +172,8 @@ typedef struct s_game
 	t_keys		keys;
 	t_time		time;
 	t_textures	textures;
+	int			floor_color;
+	int			celling_color;
 }	t_game;
 
 // FUNÇÕES PRINCIPAIS
@@ -182,7 +185,7 @@ void 	err_init_cub(t_game *game, char *str);
 void	clear_connection(t_game *game);
 void	clear_window(t_game *game);
 void	clear_img_ptr(t_game *game);
-void	clear_img_pixel(t_game *game);
+// void	clear_img_pixel(t_game *game);
 
 //imagens 2d
 // void put_img(t_game *game);
@@ -224,7 +227,7 @@ void	calc_coord_delta(t_game *game);
 //raycasting
 void	advance_ray(t_ray *ray);
 t_hit	cast_ray(t_game *game, double ray_dx, double ray_dy);
-void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy);
+// void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy);
 t_side	get_side(t_ray *ray);
 void	init_ray(t_game *game, t_ray *ray, double ray_dx, double ray_dy);
 void	init_ray_delta(t_ray *ray);
@@ -238,14 +241,16 @@ void	get_camera_ray(t_game *game, int screen_x, double *ray_dx, double *ray_dy);
 
 //camera
 void	init_camera_plane(t_game *game);
-void	draw_camera_rays(t_game *game);
+// void	draw_camera_rays(t_game *game);
 
 //walls
 double	calc_perp_dist(t_game *game, t_hit hit);
 int		calc_wall_height(double perp_dist);
+void	draw_background(t_game *game);
 void	draw_wall_column(t_game *game, int x, int wall_h, t_hit hit);
 void	render_wall_column(t_game *game, int x);
 void	render_walls(t_game *game);
+int		get_color_rgb(int r, int g, int b);
 
 //texture
 int		load_texture(t_game *game, t_img *texture, char *path);
@@ -255,6 +260,6 @@ int		get_texture_color(t_img *texture, int x, int y);
 
 
 //textura mockada
-int	textures_init(t_game *game);
+int		textures_init(t_game *game);
 
 #endif

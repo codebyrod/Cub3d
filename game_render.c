@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 22:35:11 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/01 20:14:12 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/11/02 21:41:10 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //construir o jogador
 //calculo da movimentação do jogador
 
-void	clear_screen(t_game *game)
+void	draw_background(t_game *game)
 {
 	int	x;
 	int	y;
@@ -29,9 +29,9 @@ void	clear_screen(t_game *game)
 		while (x < WIDTH)
 		{
 			if (y < HEIGHT / 2)
-				my_pixel_put(&game->img, x, y, 0x555555);
+				my_pixel_put(&game->img, x, y, game->celling_color);
 			else
-				my_pixel_put(&game->img, x, y, 0x888888);
+				my_pixel_put(&game->img, x, y, game->floor_color);
 			x++;
 		}
 		y++;
@@ -109,7 +109,7 @@ void game_render(t_game *game)
 	// draw_camera_rays(game);
 
 	//desenha o teto e o chão
-	clear_screen(game);
+	draw_background(game);
 	
 	//Projeta as paredes na tela.
 	render_walls(game);

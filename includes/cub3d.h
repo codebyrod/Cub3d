@@ -10,6 +10,7 @@
 # include "X11/keysym.h"
 # include "X11/X.h"
 # include "../libft/libft.h"
+# include "parser.h"
 
 # define HEIGHT 800
 # define WIDTH 800
@@ -171,6 +172,7 @@ typedef struct s_game
 	t_map		map;
 	t_keys		keys;
 	t_time		time;
+	t_data_pars *cfg;
 	t_textures	textures;
 	int			floor_color;
 	int			celling_color;
@@ -220,10 +222,6 @@ void	next_move(t_game *game);
 void	calc_angle(t_game *game);
 void	calc_coord_delta(t_game *game);
 
-
-
-
-
 //raycasting
 void	advance_ray(t_ray *ray);
 t_hit	cast_ray(t_game *game, double ray_dx, double ray_dy);
@@ -261,5 +259,6 @@ int		get_texture_color(t_img *texture, int x, int y);
 
 //textura mockada
 int		textures_init(t_game *game);
+
 
 #endif

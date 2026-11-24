@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   config_to_game.c                                   :+:      :+:    :+:   */
+/*   config_bridge_game.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: febranda <febranda@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/23 19:08:56 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/23 19:34:32 by febranda         ###   ########.fr       */
+/*   Updated: 2026/11/24 20:37:56 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	config_to_game(t_game *game, t_data_pars *data)
 {
 	game->play.play_x = data->player_data.col;
 	game->play.play_y = data->player_data.row;
-	game->map.map = data->map.map_layout;
 	game->map.map_width = data->map.width;
 	game->map.map_height = data->map.height;
 	game->textures.north.addr = ft_strdup(data->textures.north);

@@ -18,7 +18,7 @@ Ordem de trabalho do mais imediato ao mais distante, com um teste de sucesso em 
 - [x] Rodar `./cub3d` sem argumento, depois com dois argumentos: ambos devem dar a mensagem de uso
 - [x] Rodar `./cub3d arquivo_que_nao_existe.cub`: o parser deve recusar com erro limpo e código de saída 1
 - [x] Criar `cp minimap.cub minimap.txt` e rodar `./cub3d minimap.txt`: deve recusar pela extensão
-- [ ] Rodar `./cub3d ab` e `./cub3d .cub`: hoje `sufix_verification` lê fora da string (`&map[len - 4]` com `len < 4`). **Corrigir:**
+- [x] Rodar `./cub3d ab` e `./cub3d .cub`: hoje `sufix_verification` lê fora da string (`&map[len - 4]` com `len < 4`). **Corrigir:**
 
 ```c
 int	sufix_verification(char *map)
@@ -77,13 +77,13 @@ void	parse_error(char *msg)
 
 O `setup_map_size` do parser já completa todas as linhas com espaço até `width`, então a ponte não precisa copiar o mapa. O layout pertence à config e quem libera é o `free_config`.
 
-- [ ] Criar `config_bridge.c` com **apenas** `config_to_game`:
+- [x] Criar `config_bridge.c` com **apenas** `config_to_game`:
 
 
   O spawn vira `'0'` porque o `is_wall_at` trata tudo que não é `'0'` como parede. A direção continua em `cfg->player_data.view_direction`. A função não aloca, então não falha (pode virar `void`).
 
-- [ ] Adicionar o arquivo ao Makefile
-- [ ] Descomentar `config_to_game` na `main`
+- [x] Adicionar o arquivo ao Makefile
+- [x] Descomentar `config_to_game` na `main`
 - [ ] **Teste isolado:** colocar um `return` logo depois da ponte, imprimir `game.map.map` linha a linha e conferir que o spawn virou `0` e todas as linhas têm o mesmo tamanho
 - [ ] Rodar esse teste sob `valgrind` (um `free_config` no fim deve deixar zero leaks)
 
@@ -93,9 +93,9 @@ O `setup_map_size` do parser já completa todas as linhas com espaço até `widt
 
 **Objetivo:** o jogo parar de usar valores fixos.
 
-- [ ] Em `textures_init`, trocar os caminhos fixos por `game->cfg->textures.north/south/west/east`
-- [ ] Em `data_init`, apagar as duas linhas que fixam cor do teto e do chão (elas sobrescrevem as da ponte)
-- [ ] **Teste:** editar o `.cub` para `F 255,0,0` e `C 0,0,255`. Chão vermelho e teto azul confirmam que a config chega na tela
+- [x] Em `textures_init`, trocar os caminhos fixos por `game->cfg->textures.north/south/west/east`
+- [x] Em `data_init`, apagar as duas linhas que fixam cor do teto e do chão (elas sobrescrevem as da ponte)
+- [x] **Teste:** editar o `.cub` para `F 255,0,0` e `C 0,0,255`. Chão vermelho e teto azul confirmam que a config chega na tela
 - [ ] **Teste (parser):** apontar uma textura para um caminho inexistente. O parser barra com `Could not open a texture file`
 - [ ] **Teste (`textures_init`):** apontar uma textura para um arquivo legível que **não é xpm** (por exemplo `maps/minimap.cub`). O parser aceita e o `mlx_xpm_file_to_image` falha
 - [ ] **Corrigir o que esse teste expõe:** quando `textures_init` falha, o `cub_init` retorna `TEXTURE_ERROR` sem limpar, e conexão, janela e imagem vazam. Chamar `end_connection(game)` (ou equivalente) nesse ramo
@@ -104,9 +104,9 @@ O `setup_map_size` do parser já completa todas as linhas com espaço até `widt
 
 **Objetivo:** posição e direção vindas do parser.
 
-- [ ] Apagar `pos_init_player` e o protótipo
-- [ ] Reescrever `player_init` lendo `row`, `col` e `view_direction` de `game->cfg->player_data`, com `+ 0.5` e a direção por letra: N=(0,-1), S=(0,1), E=(1,0), W=(-1,0)
-- [ ] Manter `init_camera_plane` no final do `player_init`
+- [x] Apagar `pos_init_player` e o protótipo
+- [x] Reescrever `player_init` lendo `row`, `col` e `view_direction` de `game->cfg->player_data`, com `+ 0.5` e a direção por letra: N=(0,-1), S=(0,1), E=(1,0), W=(-1,0)
+- [x] Manter `init_camera_plane` no final do `player_init`
 - [ ] **Teste:** abrir o `minimap.cub`. O jogador deve nascer no canto inferior direito, olhando para o norte
 - [ ] **Teste dos 4 spawns:** trocar o `N` por `S`, `E` e `W` e conferir a direção e que cada face da parede mostra a textura certa
 

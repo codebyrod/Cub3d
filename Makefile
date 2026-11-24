@@ -6,7 +6,7 @@
 #    By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/24 07:25:17 by rosousa-          #+#    #+#              #
-#    Updated: 2026/11/22 22:55:53 by rosousa-         ###   ########.fr        #
+#    Updated: 2026/11/24 19:40:03 by rosousa-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ PARSING_SRC	= parse.c \
 #Game sources
 GAME_SRC    = camera.c \
                 clear.c \
+                config_bridge_game.c \
                 cub3d.c \
                 data_init.c \
                 err_init_cub.c \

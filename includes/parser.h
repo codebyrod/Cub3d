@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 17:14:47 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/23 05:15:31 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/23 17:15:45 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "../libft/libft.h"
-# include "cub3d.h"
 
 typedef struct s_texture_pars
 {
@@ -86,8 +85,8 @@ void	free_config(t_data_pars *game_config);
 int		sufix_verification(char *map);
 
 //INTEGRAÇÃO
-int		config_to_game(t_data_pars *cfg, t_game *game);
-void	free_game_map(t_game *game);
-void	clear_textures(t_game *game);
+// int		config_to_game(t_data_pars *cfg, t_game *game);
+// void	free_game_map(t_game *game);
+// void	clear_textures(t_game *game);
 
 #endif

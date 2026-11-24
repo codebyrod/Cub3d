@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/23 05:16:22 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/23 17:14:13 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@
 
 
 //New Main
-#include "includes/parser.h"
 #include "includes/cub3d.h"
 
 static void	debug_print_config(t_data_pars *c);

@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 16:55:50 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/22 19:03:14 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/23 18:02:00 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,49 +26,64 @@ void	key_mov_init(t_game *game)
 	game->keys.esc = 0;
 }
 
-void	pos_init_player(t_game *game)
-{
-	int	i;
-	int	j;
+// void	pos_init_player(t_game *game)
+// {
+// 	int	i;
+// 	int	j;
 
-	// printf("MAP POINTER: %p\n", (void *)game->map.map);
-	// printf("MAP WIDTH: %d\n", game->map.map_width);
-	// printf("MAP HEIGHT: %d\n", game->map.map_height);
+// 	// printf("MAP POINTER: %p\n", (void *)game->map.map);
+// 	// printf("MAP WIDTH: %d\n", game->map.map_width);
+// 	// printf("MAP HEIGHT: %d\n", game->map.map_height);
 	
-	i = 0;
-	while (i < game->map.map_width)
-	{
-		j = 0;
-		while (j < game->map.map_height)
-		{
-			// printf("Acessando [%d][%d]\n", j, i);
-			// printf("Linha: %s\n", game->map.map[j]);
-			if (game->map.map[j][i] == '0')
-			{
-				game->play.pos_init_X = i;
-				game->play.pos_init_Y = j;
-				return ;
-			}
-			j++;
-		}	
-		i++;
-	}
+// 	i = 0;
+// 	while (i < game->map.map_width)
+// 	{
+// 		j = 0;
+// 		while (j < game->map.map_height)
+// 		{
+// 			// printf("Acessando [%d][%d]\n", j, i);
+// 			// printf("Linha: %s\n", game->map.map[j]);
+// 			if (game->map.map[j][i] == '0')
+// 			{
+// 				game->play.pos_init_X = i;
+// 				game->play.pos_init_Y = j;
+// 				return ;
+// 			}
+// 			j++;
+// 		}	
+// 		i++;
+// 	}
+// }
+
+static void set_player_dir(t_game *game, char c)
+{
+	game->play.dir_x = 0;
+	game->play.dir_y = 0;
+	
+	if (c == 'N')
+		game->play.dir_y = -1;
+	else if (c == 'S')
+		game->play.dir_y = 1;
+	else if (c == 'E')
+		game->play.dir_x = 1;
+	else if (c == 'W')
+		game->play.dir_x = -1;
+		
 }
 
 void	player_init(t_game *game)
 {
-	pos_init_player(game);
-	game->play.play_x = game->play.pos_init_X + 0.3;
-	game->play.play_y = game->play.pos_init_Y + 0.3;
+	
+	// pos_init_player(game);
+	game->play.play_x += 0.5;
+	game->play.play_y += 0.5;
 	// game->play.play_x = game->play.pos_init_X;
 	// game->play.play_y = game->play.pos_init_Y;
-	game->play.radius = (((double)PLAYER_SIZE * 1.0) / ((double)TILE_SIZE * 1.0) / 2.0);
+	set_player_dir(game, game->play.view_dir);
+	game->play.radius = ((double)PLAYER_SIZE / (double)TILE_SIZE)  / 2.0;
 	game->play.delta_x = 0;
 	game->play.delta_y = 0;
 	game->play.magnitude = 0;
-	game->play.dir_x = 0;
-	game->play.dir_y = 1;
-
 	//Esse angle precisa ser em radianos
 	game->play.angle = 0;
 	init_camera_plane(game);

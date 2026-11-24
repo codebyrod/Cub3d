@@ -125,8 +125,9 @@ typedef struct s_hit
 
 typedef struct s_player
 {
-	int		pos_init_Y;
-	int		pos_init_X;
+	// int		pos_init_Y;
+	// int		pos_init_X;
+	char    view_dir;
 	double	play_x;
 	double	play_y;
 	double	radius;
@@ -259,6 +260,9 @@ int		get_texture_color(t_img *texture, int x, int y);
 
 //textura mockada
 int		textures_init(t_game *game);
+
+// texture
+static void set_player_dir(t_game *game, char c);
 
 
 #endif

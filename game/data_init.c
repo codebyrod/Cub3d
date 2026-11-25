@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 16:55:50 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/23 18:02:00 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/24 20:39:07 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,4 @@ void	data_init(t_game *game)
 	player_init(game);
 	gettimeofday(&tv, NULL);
 	game->time.last_frame_time = tv.tv_sec + (tv.tv_usec / 1000000.0);
-	game->celling_color = get_color_rgb(30, 30, 150);
-	game->floor_color = get_color_rgb(30, 120, 30);
 }

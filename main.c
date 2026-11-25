@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/24 22:26:55 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 03:29:34 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,18 +200,18 @@ static void	debug_print_bridge(t_game *game, t_data_pars *data)
 	printf("[ceil_color -> ceiling_color]\n");
 	printf("  data: %d (0x%06X)\n", data->ceil_color, data->ceil_color);
 	printf("  game: %d (0x%06X)\n", game->ceiling_color, game->ceiling_color);
-	printf("[textures.north -> textures.north.addr]\n");
-	printf("  data: [%s]\n", data->textures.north);
-	printf("  game: [%s]\n", game->textures.north.addr);
-	printf("[textures.south -> textures.south.addr]\n");
-	printf("  data: [%s]\n", data->textures.south);
-	printf("  game: [%s]\n", game->textures.south.addr);
-	printf("[textures.east -> textures.east.addr]\n");
-	printf("  data: [%s]\n", data->textures.east);
-	printf("  game: [%s]\n", game->textures.east.addr);
-	printf("[textures.west -> textures.west.addr]\n");
-	printf("  data: [%s]\n", data->textures.west);
-	printf("  game: [%s]\n", game->textures.west.addr);
+	// printf("[textures.north -> textures.north.addr]\n");
+	// printf("  data: [%s]\n", data->textures.north);
+	// printf("  game: [%s]\n", game->textures.north.addr);
+	// printf("[textures.south -> textures.south.addr]\n");
+	// printf("  data: [%s]\n", data->textures.south);
+	// printf("  game: [%s]\n", game->textures.south.addr);
+	// printf("[textures.east -> textures.east.addr]\n");
+	// printf("  data: [%s]\n", data->textures.east);
+	// printf("  game: [%s]\n", game->textures.east.addr);
+	// printf("[textures.west -> textures.west.addr]\n");
+	// printf("  data: [%s]\n", data->textures.west);
+	// printf("  game: [%s]\n", game->textures.west.addr);
 	printf("[map.map_layout -> map.map]\n");
 	debug_print_map_compare(data->map.map_layout, game->map.map);
 	printf("=================================================\n");

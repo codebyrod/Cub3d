@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/02 21:36:01 by rodrigo          ###   ########.fr       */
+/*   Updated: 2026/11/25 03:40:41 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,7 @@ int	cub_connection(t_game *game)
 }
 
 
-// int	close_handler(t_game *game)
-// {
-// 	mlx_destroy_image(game->connection, game->img.img_ptr);
-// 	mlx_destroy_window(game->connection, game->window);
-// 	mlx_destroy_display(game->connection);
-// 	free(game->connection);
-// 	exit (EXIT_SUCCESS);
-// }
+
 
 int cub_init(t_game *game)
 {
@@ -71,6 +64,7 @@ int cub_init(t_game *game)
 	// textures_init(game);
 	if (textures_init(game))
 	{
+		end_connection(game);
 		printf("Error: Texture error\n");
 		return (TEXTURE_ERROR);
 	}

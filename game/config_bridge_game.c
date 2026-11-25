@@ -6,60 +6,60 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/23 19:08:56 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/24 21:30:31 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 04:06:35 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static size_t	ft_arrlen(char **arr)
-{
-	size_t	i;
+// static size_t	ft_arrlen(char **arr)
+// {
+// 	size_t	i;
 
-	i = 0;
-	while (arr && arr[i])
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (arr && arr[i])
+// 		i++;
+// 	return (i);
+// }
 
-static void	free_imperfect_arr(char **arr, size_t count)
-{
-	if (!arr)
-		return ;
-	while (count > 0)
-	{
-		count--;
-		free(arr[count]);
-	}
-	free(arr);
-}
+// static void	free_imperfect_arr(char **arr, size_t count)
+// {
+// 	if (!arr)
+// 		return ;
+// 	while (count > 0)
+// 	{
+// 		count--;
+// 		free(arr[count]);
+// 	}
+// 	free(arr);
+// }
 
-static char	**ft_arrdup(char **arr)
-{
-	size_t	len;
-	size_t	i;
-	char	**copy;
+// static char	**ft_arrdup(char **arr)
+// {
+// 	size_t	len;
+// 	size_t	i;
+// 	char	**copy;
 
-	i = 0;
-	if (!arr)
-		return (NULL);
-	len = ft_arrlen(arr);
-	copy = malloc(sizeof(char *) * (len + 1));
-	if (!copy)
-		return (NULL);
-	while (i < len)
-	{
-		copy[i] = ft_strdup(arr[i]);
-		if (!copy[i])
-		{
-			free_imperfect_arr(copy, i);
-			return (NULL);
-		}
-		i++;
-	}
-	copy[i] = NULL;
-	return (copy);
-}
+// 	i = 0;
+// 	if (!arr)
+// 		return (NULL);
+// 	len = ft_arrlen(arr);
+// 	copy = malloc(sizeof(char *) * (len + 1));
+// 	if (!copy)
+// 		return (NULL);
+// 	while (i < len)
+// 	{
+// 		copy[i] = ft_strdup(arr[i]);
+// 		if (!copy[i])
+// 		{
+// 			free_imperfect_arr(copy, i);
+// 			return (NULL);
+// 		}
+// 		i++;
+// 	}
+// 	copy[i] = NULL;
+// 	return (copy);
+// }
 
 void	config_to_game(t_game *game, t_data_pars *data)
 {
@@ -70,11 +70,14 @@ void	config_to_game(t_game *game, t_data_pars *data)
 	game->play.view_dir = data->player_data.view_direction;
 	game->floor_color = data->floor_color;
 	game->ceiling_color = data->ceil_color;
-	game->textures.north.addr = ft_strdup(data->textures.north);
-	game->textures.south.addr = ft_strdup(data->textures.south);
-	game->textures.east.addr = ft_strdup(data->textures.east);
-	game->textures.west.addr = ft_strdup(data->textures.west);
-	game->map.map = ft_arrdup(data->map.map_layout);
+	game->path_text.north = data->textures.north;
+	game->path_text.south = data->textures.south;
+	game->path_text.west = data->textures.west;
+	game->path_text.east = data->textures.east;
+	// game->textures.south.addr = ft_strdup(data->textures.south);
+	// game->textures.east.addr = ft_strdup(data->textures.east);
+	// game->textures.west.addr = ft_strdup(data->textures.west);
+	game->map.map = data->map.map_layout;
 }
 
 // erro no arrdup quando libera o mapa original nao libera a copia

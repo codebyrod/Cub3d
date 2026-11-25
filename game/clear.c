@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:32:38 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/22 19:02:50 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 03:36:23 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	clear_connection(t_game *game)
 	if (game->connection)
 	{
 		mlx_destroy_display(game->connection);
-		free(game->connection);
+		// free(game->connection);
 		game->connection = NULL;
 	}
 }
@@ -28,7 +28,7 @@ void	clear_window(t_game *game)
 	{
 		// mlx_clear_window(game->connection, game->window);
 		mlx_destroy_window(game->connection, game->window);
-		game->window = NULL;		
+		game->window = NULL;
 	}
 }
 void	clear_img_ptr(t_game *game)
@@ -42,6 +42,7 @@ void	clear_img_ptr(t_game *game)
 }
 void	end_connection(t_game *game)
 {
+	clear_textures(game);
 	clear_img_ptr(game);
 	clear_window(game);
 	clear_connection(game);

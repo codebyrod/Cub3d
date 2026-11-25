@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:52:34 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/25 03:41:02 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 12:56:50 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	handle_release(int keycode, t_game *game)
 	else if (keycode == XK_x || keycode == XK_X)
 		game->keys.x = BOOL_FALSE;
 	else if (keycode == XK_Escape)
-		game->keys.esc = BOOL_FALSE;
+		close_handler(game);
+		// game->keys.esc = BOOL_FALSE;
 	else if (keycode == XK_Up)
 		game->keys.a_up = BOOL_FALSE;
 	else if (keycode == XK_Right)

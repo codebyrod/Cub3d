@@ -107,8 +107,8 @@ O `setup_map_size` do parser já completa todas as linhas com espaço até `widt
 
 **Objetivo:** fechar sem vazar nada.
 
-- [ ] Criar `clear_textures` em `clear.c` (destroy das 4 imagens se `img_ptr != NULL`)
-- [ ] Reescrever `close_handler`: texturas, imagem, janela, conexão, `free_config(game->cfg)`, `exit`. **Não** há `free_game_map`: o mapa pertence à config
+- [x] Criar `clear_textures` em `clear.c` (destroy das 4 imagens se `img_ptr != NULL`)
+- [x] Reescrever `close_handler`: texturas, imagem, janela, conexão, `free_config(game->cfg)`, `exit`. **Não** há `free_game_map`: o mapa pertence à config
 - [ ] Fazer o ESC chamar `close_handler`
 
 

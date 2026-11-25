@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 14:03:58 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/22 22:47:41 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 02:19:06 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	*fill_buffer(char *buffer, int fd)
 {
 	int		bytes_read;
 	char	*temp;
+	char    *joined;
 
 	bytes_read = 1;
 	temp = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
@@ -56,7 +57,17 @@ char	*fill_buffer(char *buffer, int fd)
 			free(temp);
 			return (NULL);
 		}
-		buffer = ft_strjoin(buffer, temp);
+		//ALTERAÇÃO AQUI
+		joined = ft_strjoin(buffer, temp);
+		free(buffer);
+		if (!joined)
+		{
+			free(temp);
+			return (NULL);
+		}
+		buffer = joined;
+		// FIM DA ALTERAÇÃO
+		// buffer = ft_strjoin(buffer, temp);
 		ft_bzero(temp, BUFFER_SIZE);
 	}
 	free(temp);

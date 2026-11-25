@@ -1,0 +1,10 @@
+NO ./tests_cub3d/textures/t_n.xpm
+SO ./tests_cub3d/textures/t_s.xpm
+WE ./tests_cub3d/textures/t_w.xpm
+EA ./tests_cub3d/textures/t_e.xpm
+F 220,100,0
+C 99999999999,0,0
+111111
+100001
+1000N1
+111111

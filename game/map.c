@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/02 13:10:07 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/25 13:09:47 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 18:22:07 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 	int				displacement;
 	int				conv_bit_to_byte;
 	char			*addr_to_drawing;
-	unsigned int	*int_addr_drawing;
+	// unsigned int	*int_addr_drawing;
 
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
 		return ;

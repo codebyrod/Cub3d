@@ -66,34 +66,34 @@ Leitura do `exit`: **1** é o esperado, **42** significa que o valgrind achou er
 
 - [x] `make fclean && make` sem warning (`-Wall -Wextra -Werror`)
 - [x] `make` de novo sem mudanças: não recompila nada
-- [ ] Alterar um `.h` e rodar `make`: reconstrói o que depende dele (se não reconstruir, o Makefile não rastreia headers)
-- [ ] `make re` funciona e não faz relink desnecessário
-- [ ] `make clean`, `make fclean` limpam sem erro, e rodar duas vezes seguidas também não dá erro
-- [ ] O binário se chama `cub3D` (como o subject pede) e não só `cub3d`
+- [x] Alterar um `.h` e rodar `make`: reconstrói o que depende dele (se não reconstruir, o Makefile não rastreia headers)
+- [x] `make re` funciona e não faz relink desnecessário
+- [x] `make clean`, `make fclean` limpam sem erro, e rodar duas vezes seguidas também não dá erro
+- [x] O binário se chama `cub3D` (como o subject pede) e não só `cub3d`
 - [ ] Nenhuma função proibida: `nm cub3d | grep " U "`
 - [ ] `norminette` limpa em todos os `.c` e `.h`
 
 ## Bloco 2: Argumentos e nome do arquivo
 
-- [ ] Sem argumento → mensagem de uso
-- [ ] Dois ou mais argumentos → mensagem de uso
-- [ ] Argumento vazio `./cub3d ""` → mensagem de uso
-- [ ] `./cub3d ab` e `./cub3d a` → erro de extensão, sem leitura fora da string
-- [ ] `./cub3d .cub` e `./cub3d cub` → recusa
-- [ ] `./cub3d mapa.CUB` (maiúscula) → recusa
-- [ ] `./cub3d mapa.cub.txt`, `./cub3d mapacub`, `./cub3d mapa.cub.` → recusa
-- [ ] `./cub3d "mapa.cub "` (espaço no fim) → recusa
+- [x] Sem argumento → mensagem de uso
+- [x] Dois ou mais argumentos → mensagem de uso
+- [x] Argumento vazio `./cub3d ""` → mensagem de uso
+- [x] `./cub3d ab` e `./cub3d a` → erro de extensão, sem leitura fora da string
+- [x] `./cub3d .cub` e `./cub3d cub` → recusa
+- [x] `./cub3d mapa.CUB` (maiúscula) → recusa
+- [x] `./cub3d mapa.cub.txt`, `./cub3d mapacub`, `./cub3d mapa.cub.` → recusa
+- [x] `./cub3d "mapa.cub "` (espaço no fim) → recusa
 - [ ] `./cub3d mapa.cub.cub` existente e válido → aceita (termina em `.cub`)
-- [ ] `./cub3d ./maps/good/base.cub`, caminho absoluto e caminho com `..` → todos funcionam
-- [ ] Caminho com espaço: `cp maps/good/base.cub "maps/good/meu mapa.cub"` → funciona
-- [ ] Argumento começando com hífen: `./cub3d -h`, `./cub3d --help` → recusa pela extensão
-- [ ] Erro vai para stderr: `./cub3d 2>/dev/null` não imprime nada, e `./cub3d >/dev/null` ainda mostra a mensagem
+- [x] `./cub3d ./maps/good/base.cub`, caminho absoluto e caminho com `..` → todos funcionam
+- [x] Caminho com espaço: `cp maps/good/base.cub "maps/good/meu mapa.cub"` → funciona
+- [x] Argumento começando com hífen: `./cub3d -h`, `./cub3d --help` → recusa pela extensão
+- [x] Erro vai para stderr: `./cub3d 2>/dev/null` não imprime nada, e `./cub3d >/dev/null` ainda mostra a mensagem
 
 ## Bloco 3: O arquivo em si
 
-- [ ] Arquivo inexistente: `./cub3d nao_existe.cub` → `Could not open the map file`
-- [ ] Diretório com nome `.cub`: `mkdir maps/bad/dir.cub` → erro limpo, sem loop infinito
-- [ ] Sem permissão: `cp maps/good/base.cub maps/bad/sem_perm.cub && chmod 000 maps/bad/sem_perm.cub` → erro limpo (não vale como root)
+- [x] Arquivo inexistente: `./cub3d nao_existe.cub` → `Could not open the map file`
+- [x] Diretório com nome `.cub`: `mkdir maps/bad/dir.cub` → erro limpo, sem loop infinito
+- [x] Sem permissão: `cp maps/good/base.cub maps/bad/sem_perm.cub && chmod 000 maps/bad/sem_perm.cub` → erro limpo (não vale como root)
 - [ ] Symlink para um mapa válido → funciona
 - [ ] Arquivo vazio: `: > maps/bad/vazio.cub` → `Missing or incomplete configuration`
 - [ ] Só linhas vazias e espaços: `printf '\n\n  \n\t\n' > maps/bad/so_branco.cub` → idem

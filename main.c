@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/25 13:14:22 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 19:48:25 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,37 @@
 static void	debug_print_bridge(t_game *game, t_data_pars *data);
 static void	debug_print_map_compare(char **src, char **dst);
 
+static void	debug_print_b8(t_game *g, t_data_pars *c)
+{
+	int	i;
+	int	equal;
+
+	i = 0;
+	equal = 1;
+	while (c->map.map_layout[i])
+	{
+		if ((int)ft_strlen(c->map.map_layout[i]) != c->map.width)
+			equal = 0;
+		i++;
+	}
+	printf("width=%d\nheight=%d\n", c->map.width, c->map.height);
+	printf("rows_match_height=%d\nrows_equal=%d\n", i == c->map.height, equal);
+	printf("north=[%s]\nsouth=[%s]\n", c->textures.north, c->textures.south);
+	printf("west=[%s]\neast=[%s]\n", c->textures.west, c->textures.east);
+	printf("floor=%d\nceil=%d\n", c->floor_color, c->ceil_color);
+	printf("spawn_row=%d\nspawn_col=%d\n", c->player_data.row, c->player_data.col);
+	printf("spawn_dir=%d\n", c->player_data.view_direction);
+	printf("spawn_cell=%d\n", g->map.map[c->player_data.row][c->player_data.col]);
+	printf("same_ptr=%d\ncfg_ok=%d\n", g->map.map == c->map.map_layout, g->cfg == c);
+	i = 0;
+	while (c->map.map_layout[i])
+	{
+		printf("row%02d=[%s]\n", i, c->map.map_layout[i]);
+		i++;
+	}
+}
+
+
 int	main(int ac, char **av)
 {
 	t_data_pars	config;
@@ -122,6 +153,13 @@ int	main(int ac, char **av)
 	printf("apos parse: %d '%c'\n", config.player_data.view_direction, config.player_data.view_direction);
 	
 	config_to_game(&game, &config);
+	
+	if (getenv("CUB_DEBUG"))
+	{
+		debug_print_b8(&game, &config);
+		free_config(&config);
+		return (0);
+	}
 	
 	printf("view_direction: %d '%c'\n", config.player_data.view_direction,
 		config.player_data.view_direction);

@@ -1,0 +1,35 @@
+apos parse: 78 'N'
+view_direction: 78 'N'
+========== DEBUG BRIDGE (data -> game) ==========
+[player_data.col -> play.play_x]
+  data: 4
+  game: 4.000000
+[player_data.row -> play.play_y]
+  data: 2
+  game: 2.000000
+[map.width -> map.map_width]
+  data: 6
+  game: 6
+[map.height -> map.map_height]
+  data: 4
+  game: 4
+[player_data.view_direction -> play.view_dir]
+  data: N
+  game: N
+[floor_color -> floor_color]
+  data: 14443520 (0xDC6400)
+  game: 14443520 (0xDC6400)
+[ceil_color -> ceiling_color]
+  data: 14753280 (0xE11E00)
+  game: 14753280 (0xE11E00)
+[map.map_layout -> map.map]
+  linha  0 | data: [111111]
+           | game: [111111]
+  linha  1 | data: [100001]
+           | game: [100001]
+  linha  2 | data: [100001]
+           | game: [100001]
+  linha  3 | data: [111111]
+           | game: [111111]
+=================================================
+Could not load a texture

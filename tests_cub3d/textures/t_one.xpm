@@ -1,0 +1,6 @@
+/* XPM */
+static char *t_one[] = {
+"1 1 1 1",
+"a c #FFFFFF",
+"a"
+};

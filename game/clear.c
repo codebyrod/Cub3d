@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:32:38 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/25 03:36:23 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 04:13:16 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	clear_connection(t_game *game)
 	if (game->connection)
 	{
 		mlx_destroy_display(game->connection);
-		// free(game->connection);
+		free(game->connection);
 		game->connection = NULL;
 	}
 }

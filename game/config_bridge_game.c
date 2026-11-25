@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/23 19:08:56 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/25 04:06:35 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 12:47:02 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 
 void	config_to_game(t_game *game, t_data_pars *data)
 {
+	game->cfg = data;
 	game->play.play_x = data->player_data.col;
 	game->play.play_y = data->player_data.row;
 	game->map.map_width = data->map.width;

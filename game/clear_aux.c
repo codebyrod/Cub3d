@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 00:56:38 by rosousa-          #+#    #+#             */
-/*   Updated: 2026/11/25 03:41:06 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 12:48:11 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	close_handler(t_game *game)
 	clear_img_ptr(game);
 	clear_window(game);
 	clear_connection(game);
-	free_config(game);
+	if (game->cfg)
+		free_config(game->cfg);
 	exit (EXIT_SUCCESS);
 }

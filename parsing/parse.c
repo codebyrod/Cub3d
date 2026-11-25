@@ -14,7 +14,7 @@ int	handle_line(char *line, t_data_pars *game_config)
 	}
 	if (f->map_ended)
 	{
-		parse_error("Empty line or extra content inside the map");
+		parse_error("Empty line or extra content inside or after the map");
 		return (1);
 	}
 	if (!f->config_ended)

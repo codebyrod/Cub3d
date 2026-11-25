@@ -55,7 +55,7 @@ int	validate_map(t_data_pars *game_config)
 		return (1);
 	if (check_closed(&game_config->map))
 	{
-		parse_error("Map is not closed by walls");
+		parse_error("Map is not closed by walls or have space inside");
 		return (1);
 	}
 	return (0);

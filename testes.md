@@ -64,8 +64,8 @@ Leitura do `exit`: **1** é o esperado, **42** significa que o valgrind achou er
 
 ## Bloco 1: Build
 
-- [ ] `make fclean && make` sem warning (`-Wall -Wextra -Werror`)
-- [ ] `make` de novo sem mudanças: não recompila nada
+- [x] `make fclean && make` sem warning (`-Wall -Wextra -Werror`)
+- [x] `make` de novo sem mudanças: não recompila nada
 - [ ] Alterar um `.h` e rodar `make`: reconstrói o que depende dele (se não reconstruir, o Makefile não rastreia headers)
 - [ ] `make re` funciona e não faz relink desnecessário
 - [ ] `make clean`, `make fclean` limpam sem erro, e rodar duas vezes seguidas também não dá erro

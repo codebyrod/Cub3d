@@ -109,15 +109,15 @@ O `setup_map_size` do parser já completa todas as linhas com espaço até `widt
 
 - [x] Criar `clear_textures` em `clear.c` (destroy das 4 imagens se `img_ptr != NULL`)
 - [x] Reescrever `close_handler`: texturas, imagem, janela, conexão, `free_config(game->cfg)`, `exit`. **Não** há `free_game_map`: o mapa pertence à config
-- [ ] Fazer o ESC chamar `close_handler`
+- [x] Fazer o ESC chamar `close_handler`
 
 
 ## Etapa 9: Corrigir os bugs menores
 
-- [ ] `main`: o caminho de erro do `cub_init` só precisa de `free_config` (já está certo, o mapa é da config)
-- [ ] `cub_init`: conferir se o retorno em sucesso e em erro está coerente com o `if (cub_init(...))` da `main`
-- [ ] `my_pixel_put`: trocar `>` por `>=` nos limites e remover a gravação duplicada
-- [ ] `err_init_cub`: conferir o retorno de `ft_strscmp`
+- [x] `main`: o caminho de erro do `cub_init` só precisa de `free_config` (já está certo, o mapa é da config)
+- [x] `cub_init`: conferir se o retorno em sucesso e em erro está coerente com o `if (cub_init(...))` da `main`
+- [x] `my_pixel_put`: trocar `>` por `>=` nos limites e remover a gravação duplicada
+- [x] `err_init_cub`: conferir o retorno de `ft_strscmp`
 
 
 ## Etapa 11: Limpeza final

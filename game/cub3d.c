@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/27 02:39:51 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/25 03:40:41 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 13:17:58 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int cub_init(t_game *game)
 	
 	if (cub_connection(game))
 	{
-		ft_putstr_fd("Error: Malloc_error\n", 2);
+		// ft_putstr_fd("Error: Malloc_error\n", 2);
 		return (MALLOC_ERROR);
 	}
 	// printf("CHECK 2: width=%d\n", game->map.map_width);
@@ -65,7 +65,7 @@ int cub_init(t_game *game)
 	if (textures_init(game))
 	{
 		end_connection(game);
-		printf("Error: Texture error\n");
+		printf("Could not load a texture\n");
 		return (TEXTURE_ERROR);
 	}
 	

@@ -47,7 +47,7 @@ static int	check_map_line(char *line, t_data_pars *cfg)
 	{
 		if (!is_map_char(line[i]))
 		{
-			parse_error("Invalid character in the map");
+			parse_error("Invalid char in the map or double config value");
 			return (1);
 		}
 		if (ft_strchr("NSEW", line[i]))

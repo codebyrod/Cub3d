@@ -263,7 +263,7 @@ int		get_texture_color(t_img *texture, int x, int y);
 int		textures_init(t_game *game);
 
 // texture
-static void set_player_dir(t_game *game, char c);
+// static void set_player_dir(t_game *game, char c);
 
 
 #endif

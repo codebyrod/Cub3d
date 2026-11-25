@@ -6,12 +6,11 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/23 19:08:56 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/24 21:08:59 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/24 21:30:31 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
-#include "includes/parser.h"
+#include "../includes/cub3d.h"
 
 static size_t	ft_arrlen(char **arr)
 {

@@ -67,7 +67,7 @@ void	parse_error(char *msg)
 **Objetivo:** o `t_game` poder guardar o ponteiro da config.
 
 - [x] No `cub3d.h`, incluir o `parser.h` e adicionar o campo `t_data_pars *cfg;` no `t_game`
-- [ ] Adicionar os protótipos `config_to_game` e `clear_textures`
+- [x] Adicionar os protótipos `config_to_game` e `clear_textures`
 
 **Teste de sucesso:** `make` compila sem erro.
 

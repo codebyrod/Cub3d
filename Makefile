@@ -6,13 +6,14 @@
 #    By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/24 07:25:17 by rosousa-          #+#    #+#              #
-#    Updated: 2026/11/25 03:33:22 by rosousa-         ###   ########.fr        #
+#    Updated: 2026/11/25 18:18:55 by rosousa-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = cub3d
+NAME        = cub3D
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -g
+DEPFLAGS    = -MMD -MP
 INCLUDES	= -Iincludes -Ilibft -I$(MLX_DIR)
 
 #Directories
@@ -25,7 +26,6 @@ MLX_DIR      = minilibx-linux
 LIBFT       = $(LIBFT_DIR)/libft.a
 MLX         = $(MLX_DIR)/libmlx.a
 MLX_LNK     = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-
 
 # Sources 
 ROOT_SRC    = main.c
@@ -67,6 +67,7 @@ PARSING_OBJS      = $(addprefix $(PARSING_DIR)/objs/, $(PARSING_SRC:.c=.o))
 
 
 OBJS        = $(ROOT_OBJS) $(GAME_OBJS) $(PARSING_OBJS)
+DEPS	    = $(OBJS:.o=.d)
 OBJ_DIR	    = objs $(GAME_DIR)/objs $(PARSING_DIR)/objs
 
 GREEN       = \033[0;32m
@@ -87,17 +88,17 @@ $(MLX):
 #root object
 objs/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPFLAGS) $(INCLUDES) -c $< -o $@
 
 #Game object
 $(GAME_DIR)/objs/%.o: $(GAME_DIR)/%.c
 	mkdir -p $(dir $@)
-	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPFLAGS) $(INCLUDES) -c $< -o $@
 
 #Parsing object
 $(PARSING_DIR)/objs/%.o: $(PARSING_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPFLAGS) $(INCLUDES) -c $< -o $@
 
 
 #CLEANUP
@@ -116,3 +117,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+-include $(DEPS)

@@ -176,7 +176,7 @@ typedef struct s_game
 	t_data_pars *cfg;
 	t_textures	textures;
 	int			floor_color;
-	int			celling_color;
+	int			ceiling_color;
 }	t_game;
 
 // FUNÇÕES PRINCIPAIS
@@ -213,6 +213,7 @@ void	events_init(t_game *game);
 //data inits
 void	data_init(t_game *game);
 void	pos_init_player(t_game *game);
+void	config_to_game(t_game *game, t_data_pars *data);
 
 
 //movements

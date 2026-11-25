@@ -38,6 +38,7 @@ static int	set_texture(char **dst, int *flag, char *path)
 	*dst = ft_strdup(path);
 	if (!*dst)
 	{
+		free(*dst);
 		parse_error("Memory allocation failed");
 		return (1);
 	}

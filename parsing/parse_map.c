@@ -52,11 +52,11 @@ static int	check_map_line(char *line, t_data_pars *cfg)
 		}
 		if (ft_strchr("NSEW", line[i]))
 		{
+			cfg->player_data.view_direction = line[i];
 			line[i] = '0';
 			cfg->player_data.count++;
 			cfg->player_data.row = count_rows(cfg->map.map_layout);
 			cfg->player_data.col = i;
-			cfg->player_data.view_direction = line[i];
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/02 13:10:07 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/22 19:04:55 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 13:09:47 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,15 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 	char			*addr_to_drawing;
 	unsigned int	*int_addr_drawing;
 
-	if (x < 0 || y < 0 || x > WIDTH || y > HEIGHT)
-	{
-		//Melhorar isso aqui
-		printf("X ou Y acessando pixel fora dos limites\n");
-		exit(1);
-	}
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
+		return ;
 
 	conv_bit_to_byte = (img->bits_per_pixel / 8);
 	displacement = (img->size_len * y) + (x * conv_bit_to_byte);
 	addr_to_drawing = displacement + img->img_pixels_ptr;
 	*(unsigned int *)addr_to_drawing = color;
-	int_addr_drawing = (unsigned int *)(addr_to_drawing);
-	*int_addr_drawing = (unsigned int)color;
+// 	int_addr_drawing = (unsigned int *)(addr_to_drawing);
+// 	*int_addr_drawing = (unsigned int)color;
 }
 
 void	put_tile(t_game *game, int SIZE, int coord_x, int coord_y, int color)

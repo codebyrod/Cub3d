@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 22:35:11 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/22 19:03:39 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/24 21:30:51 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_background(t_game *game)
 		while (x < WIDTH)
 		{
 			if (y < HEIGHT / 2)
-				my_pixel_put(&game->img, x, y, game->celling_color);
+				my_pixel_put(&game->img, x, y, game->ceiling_color);
 			else
 				my_pixel_put(&game->img, x, y, game->floor_color);
 			x++;

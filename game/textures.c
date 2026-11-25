@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/01 20:17:07 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/24 20:30:10 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 03:56:19 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ int	get_texture_color(t_img *texture, int x, int y)
 // é só algo mockado temporário
 int	textures_init(t_game *game)
 {
-	if (load_texture(game, &game->textures.north, game->textures.north.addr))
+	if (load_texture(game, &game->textures.north, game->path_text.north))
 		return (1);
-	if (load_texture(game, &game->textures.south, game->textures.south.addr))
+	if (load_texture(game, &game->textures.south, game->path_text.south))
 		return (1);
-	if (load_texture(game, &game->textures.west, game->textures.west.addr))
+	if (load_texture(game, &game->textures.west, game->path_text.west))
 		return (1);
-	if (load_texture(game, &game->textures.east, game->textures.east.addr))
+	if (load_texture(game, &game->textures.east, game->path_text.east))
 		return (1);
 	return (0);
 }

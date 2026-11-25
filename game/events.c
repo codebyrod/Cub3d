@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:52:34 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/22 19:03:36 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 12:56:50 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	handle_release(int keycode, t_game *game)
 	else if (keycode == XK_x || keycode == XK_X)
 		game->keys.x = BOOL_FALSE;
 	else if (keycode == XK_Escape)
-		game->keys.esc = BOOL_FALSE;
+		close_handler(game);
+		// game->keys.esc = BOOL_FALSE;
 	else if (keycode == XK_Up)
 		game->keys.a_up = BOOL_FALSE;
 	else if (keycode == XK_Right)
@@ -62,14 +63,7 @@ int	handle_release(int keycode, t_game *game)
 	return (0);
 }
 
-int	close_handler(t_game *game)
-{
-	mlx_destroy_image(game->connection, game->img.img_ptr);
-	mlx_destroy_window(game->connection, game->window);
-	mlx_destroy_display(game->connection);
-	free(game->connection);
-	exit (EXIT_SUCCESS);
-}
+
 
 void	events_init(t_game *game)
 {

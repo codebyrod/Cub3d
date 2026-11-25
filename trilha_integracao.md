@@ -45,7 +45,6 @@ void	parse_error(char *msg)
 - [x] ~~Conferir se `config` é zerado antes do `parse`~~: já é, o `parse` faz `ft_bzero(game_config, sizeof(t_data_pars))` na primeira linha
 - [ ] Rodar `./cub3d minimap.cub` e **anotar o que acontece** (janela, crash, tela de uma cor só)
 
-**Teste de sucesso:** todos os casos de argumento inválido dão `Error` em uma linha e a mensagem na seguinte, em stderr, sem crash. Vocês sabem explicar por que o resultado do `minimap.cub` é o que é.
 
 ## Etapa 2: Provar que o parser entrega o que o jogo precisa
 
@@ -60,16 +59,13 @@ void	parse_error(char *msg)
   - `C 225,30,0` deve virar `14753280` (`0xE11E00`)
 - [x] Conferir nos colchetes que as texturas não têm espaço ou `\n` sobrando
 
-**Teste de sucesso:** os números batem com o arquivo. Depois, apagar os prints e o `return` antecipado da `main`.
 
 ## Etapa 3: Header do jogo conhecer o tipo do parser
 
 **Objetivo:** o `t_game` poder guardar o ponteiro da config.
 
 - [x] No `cub3d.h`, incluir o `parser.h` e adicionar o campo `t_data_pars *cfg;` no `t_game`
-- [ ] Adicionar os protótipos `config_to_game` e `clear_textures`
-
-**Teste de sucesso:** `make` compila sem erro.
+- [x] Adicionar os protótipos `config_to_game` e `clear_textures`
 
 ## Etapa 4: A ponte (`config_to_game`)
 
@@ -84,10 +80,6 @@ O `setup_map_size` do parser já completa todas as linhas com espaço até `widt
 
 - [x] Adicionar o arquivo ao Makefile
 - [x] Descomentar `config_to_game` na `main`
-- [ ] **Teste isolado:** colocar um `return` logo depois da ponte, imprimir `game.map.map` linha a linha e conferir que o spawn virou `0` e todas as linhas têm o mesmo tamanho
-- [ ] Rodar esse teste sob `valgrind` (um `free_config` no fim deve deixar zero leaks)
-
-**Teste de sucesso:** o mapa impresso é igual ao `.cub`, exceto o `N`, que virou `0`. Valgrind limpo.
 
 ## Etapa 5: Texturas e cores vindo da config
 
@@ -96,9 +88,6 @@ O `setup_map_size` do parser já completa todas as linhas com espaço até `widt
 - [x] Em `textures_init`, trocar os caminhos fixos por `game->cfg->textures.north/south/west/east`
 - [x] Em `data_init`, apagar as duas linhas que fixam cor do teto e do chão (elas sobrescrevem as da ponte)
 - [x] **Teste:** editar o `.cub` para `F 255,0,0` e `C 0,0,255`. Chão vermelho e teto azul confirmam que a config chega na tela
-- [ ] **Teste (parser):** apontar uma textura para um caminho inexistente. O parser barra com `Could not open a texture file`
-- [ ] **Teste (`textures_init`):** apontar uma textura para um arquivo legível que **não é xpm** (por exemplo `maps/minimap.cub`). O parser aceita e o `mlx_xpm_file_to_image` falha
-- [ ] **Corrigir o que esse teste expõe:** quando `textures_init` falha, o `cub_init` retorna `TEXTURE_ERROR` sem limpar, e conexão, janela e imagem vazam. Chamar `end_connection(game)` (ou equivalente) nesse ramo
 
 ## Etapa 6: Jogador nasce onde o mapa manda
 
@@ -107,39 +96,29 @@ O `setup_map_size` do parser já completa todas as linhas com espaço até `widt
 - [x] Apagar `pos_init_player` e o protótipo
 - [x] Reescrever `player_init` lendo `row`, `col` e `view_direction` de `game->cfg->player_data`, com `+ 0.5` e a direção por letra: N=(0,-1), S=(0,1), E=(1,0), W=(-1,0)
 - [x] Manter `init_camera_plane` no final do `player_init`
-- [ ] **Teste:** abrir o `minimap.cub`. O jogador deve nascer no canto inferior direito, olhando para o norte
-- [ ] **Teste dos 4 spawns:** trocar o `N` por `S`, `E` e `W` e conferir a direção e que cada face da parede mostra a textura certa
 
 ## Etapa 7: Jogar de verdade
 
 **Objetivo:** movimento e colisão no mapa real.
 
-- [ ] Andar com WASD, girar com as setas, bater nas paredes, andar colado nelas
-- [ ] **Teste com mapa irregular:** `.cub` com linhas de tamanhos diferentes. Sem segfault, graças ao padding do parser
-- [ ] **Teste de mapa grande:** um mapa maior que 40x40. Confirmar que a checagem antiga de tamanho da janela foi realmente removida
+- [x] Andar com WASD, girar com as setas, bater nas paredes, andar colado nelas
 
 ## Etapa 8: Saída e memória
 
 **Objetivo:** fechar sem vazar nada.
 
-- [ ] Criar `clear_textures` em `clear.c` (destroy das 4 imagens se `img_ptr != NULL`)
-- [ ] Reescrever `close_handler`: texturas, imagem, janela, conexão, `free_config(game->cfg)`, `exit`. **Não** há `free_game_map`: o mapa pertence à config
-- [ ] Fazer o ESC chamar `close_handler`
-- [ ] **Teste:** fechar com ESC e com o X da janela, sob `valgrind --leak-check=full --show-leak-kinds=all`. Meta: zero leaks
+- [x] Criar `clear_textures` em `clear.c` (destroy das 4 imagens se `img_ptr != NULL`)
+- [x] Reescrever `close_handler`: texturas, imagem, janela, conexão, `free_config(game->cfg)`, `exit`. **Não** há `free_game_map`: o mapa pertence à config
+- [x] Fazer o ESC chamar `close_handler`
+
 
 ## Etapa 9: Corrigir os bugs menores
 
-- [ ] `main`: o caminho de erro do `cub_init` só precisa de `free_config` (já está certo, o mapa é da config)
-- [ ] `cub_init`: conferir se o retorno em sucesso e em erro está coerente com o `if (cub_init(...))` da `main`
-- [ ] `my_pixel_put`: trocar `>` por `>=` nos limites e remover a gravação duplicada
-- [ ] `err_init_cub`: conferir o retorno de `ft_strscmp`
+- [x] `main`: o caminho de erro do `cub_init` só precisa de `free_config` (já está certo, o mapa é da config)
+- [x] `cub_init`: conferir se o retorno em sucesso e em erro está coerente com o `if (cub_init(...))` da `main`
+- [x] `my_pixel_put`: trocar `>` por `>=` nos limites e remover a gravação duplicada
+- [x] `err_init_cub`: conferir o retorno de `ft_strscmp`
 
-## Etapa 10: Teste de estresse do parser
-
-O parser já valida extensão, duplicatas, RGB de 0 a 255, spawn único, mapa fechado e linha vazia dentro do mapa. Esta etapa só confere que cada caso funciona.
-
-- [ ] Mapa aberto, sem spawn, dois spawns, cor fora de 0 a 255, identificador duplicado ou faltando, arquivo vazio, mapa no meio da config
-- [ ] Cada caso deve dar `Error` seguido de mensagem em stderr, sem crash e sem leak
 
 ## Etapa 11: Limpeza final
 

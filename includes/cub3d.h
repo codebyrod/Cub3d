@@ -160,6 +160,14 @@ typedef struct s_textures
 	t_img	west;
 }	t_textures;
 
+typedef struct s_path_text
+{
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
+}	t_path_text;
+
 
 typedef struct s_game
 {
@@ -175,6 +183,7 @@ typedef struct s_game
 	t_time		time;
 	t_data_pars *cfg;
 	t_textures	textures;
+	t_path_text path_text;
 	int			floor_color;
 	int			ceiling_color;
 }	t_game;
@@ -188,6 +197,9 @@ void 	err_init_cub(t_game *game, char *str);
 void	clear_connection(t_game *game);
 void	clear_window(t_game *game);
 void	clear_img_ptr(t_game *game);
+void	clear_one_texture(t_game *game, t_img *text);
+void	clear_textures(t_game *game);
+void	end_connection(t_game *game);
 // void	clear_img_pixel(t_game *game);
 
 //imagens 2d
@@ -263,7 +275,6 @@ int		get_texture_color(t_img *texture, int x, int y);
 int		textures_init(t_game *game);
 
 // texture
-static void set_player_dir(t_game *game, char c);
-
+// static void set_player_dir(t_game *game, char c);
 
 #endif

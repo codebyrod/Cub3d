@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/23 17:14:13 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/25 13:14:22 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,9 @@
 //New Main
 #include "includes/cub3d.h"
 
-static void	debug_print_config(t_data_pars *c);
-
+// static void	debug_print_config(t_data_pars *c);
+static void	debug_print_bridge(t_game *game, t_data_pars *data);
+static void	debug_print_map_compare(char **src, char **dst);
 
 int	main(int ac, char **av)
 {
@@ -109,7 +110,8 @@ int	main(int ac, char **av)
 		parse_error("Usage: ./cub3D <map.cub>");
 		return (1);
 	}
-                   // TEMPORÁRIO
+
+    // TEMPORÁRIO
 	ft_bzero(&game, sizeof(game));
 	if (parse(av[1], &config))
 		return (1);
@@ -117,9 +119,15 @@ int	main(int ac, char **av)
 	// debug_print_config(&config);   // TEMPORÁRIO
 	// free_config(&config);          // TEMPORÁRIO: encerra aqui para só testar o parser
 	// return (0);
+	printf("apos parse: %d '%c'\n", config.player_data.view_direction, config.player_data.view_direction);
 	
-	config_to_game(&config, &game);
-	// game.cfg = &config;
+	config_to_game(&game, &config);
+	
+	printf("view_direction: %d '%c'\n", config.player_data.view_direction,
+		config.player_data.view_direction);
+	
+	debug_print_bridge(&game, &config);
+	
 	if (cub_init(&game))
 	{
 		free_config(&config);
@@ -129,28 +137,82 @@ int	main(int ac, char **av)
 }
 
 //TEMPORÁRIO
-static void	debug_print_config(t_data_pars *c)
+// static void	debug_print_config(t_game *c, t_data_pars *c)
+// {
+// 	int	i;
+
+// 	printf("---- DEBUG PARSER ----\n");
+// 	printf("map.width    = %d\n", c->map.width);
+// 	printf("map.height   = %d\n", c->map.height);
+// 	printf("north        = [%s]\n", c->textures.north);
+// 	printf("south        = [%s]\n", c->textures.south);
+// 	printf("west         = [%s]\n", c->textures.west);
+// 	printf("east         = [%s]\n", c->textures.east);
+// 	printf("floor_color  = %d (0x%06X)\n", c->floor_color, c->floor_color);
+// 	printf("ceil_color   = %d (0x%06X)\n", c->ceil_color, c->ceil_color);
+// 	printf("player row   = %d\n", c->player_data.row);
+// 	printf("player col   = %d\n", c->player_data.col);
+// 	printf("player dir   = %c\n", c->player_data.view_direction);
+// 	printf("---- LAYOUT ----\n");
+// 	i = 0;
+// 	while (c->map.map_layout && c->map.map_layout[i])
+// 	{
+// 		printf("%2d [%s]\n", i, c->map.map_layout[i]);
+// 		i++;
+// 	}
+// 	printf("----------------------\n");
+// }
+
+static void	debug_print_map_compare(char **src, char **dst)
 {
 	int	i;
 
-	printf("---- DEBUG PARSER ----\n");
-	printf("map.width    = %d\n", c->map.width);
-	printf("map.height   = %d\n", c->map.height);
-	printf("north        = [%s]\n", c->textures.north);
-	printf("south        = [%s]\n", c->textures.south);
-	printf("west         = [%s]\n", c->textures.west);
-	printf("east         = [%s]\n", c->textures.east);
-	printf("floor_color  = %d (0x%06X)\n", c->floor_color, c->floor_color);
-	printf("ceil_color   = %d (0x%06X)\n", c->ceil_color, c->ceil_color);
-	printf("player row   = %d\n", c->player_data.row);
-	printf("player col   = %d\n", c->player_data.col);
-	printf("player dir   = %c\n", c->player_data.view_direction);
-	printf("---- LAYOUT ----\n");
 	i = 0;
-	while (c->map.map_layout && c->map.map_layout[i])
+	while ((src && src[i]) || (dst && dst[i]))
 	{
-		printf("%2d [%s]\n", i, c->map.map_layout[i]);
+		printf("  linha %2d | data: [%s]\n", i, (src && src[i]) ? src[i] : "NULL");
+		printf("           | game: [%s]\n", (dst && dst[i]) ? dst[i] : "NULL");
 		i++;
 	}
-	printf("----------------------\n");
+}
+
+static void	debug_print_bridge(t_game *game, t_data_pars *data)
+{
+	printf("========== DEBUG BRIDGE (data -> game) ==========\n");
+	printf("[player_data.col -> play.play_x]\n");
+	printf("  data: %d\n", data->player_data.col);
+	printf("  game: %f\n", game->play.play_x);
+	printf("[player_data.row -> play.play_y]\n");
+	printf("  data: %d\n", data->player_data.row);
+	printf("  game: %f\n", game->play.play_y);
+	printf("[map.width -> map.map_width]\n");
+	printf("  data: %d\n", data->map.width);
+	printf("  game: %d\n", game->map.map_width);
+	printf("[map.height -> map.map_height]\n");
+	printf("  data: %d\n", data->map.height);
+	printf("  game: %d\n", game->map.map_height);
+	printf("[player_data.view_direction -> play.view_dir]\n");
+	printf("  data: %c\n", data->player_data.view_direction);
+	printf("  game: %c\n", game->play.view_dir);
+	printf("[floor_color -> floor_color]\n");
+	printf("  data: %d (0x%06X)\n", data->floor_color, data->floor_color);
+	printf("  game: %d (0x%06X)\n", game->floor_color, game->floor_color);
+	printf("[ceil_color -> ceiling_color]\n");
+	printf("  data: %d (0x%06X)\n", data->ceil_color, data->ceil_color);
+	printf("  game: %d (0x%06X)\n", game->ceiling_color, game->ceiling_color);
+	// printf("[textures.north -> textures.north.addr]\n");
+	// printf("  data: [%s]\n", data->textures.north);
+	// printf("  game: [%s]\n", game->textures.north.addr);
+	// printf("[textures.south -> textures.south.addr]\n");
+	// printf("  data: [%s]\n", data->textures.south);
+	// printf("  game: [%s]\n", game->textures.south.addr);
+	// printf("[textures.east -> textures.east.addr]\n");
+	// printf("  data: [%s]\n", data->textures.east);
+	// printf("  game: [%s]\n", game->textures.east.addr);
+	// printf("[textures.west -> textures.west.addr]\n");
+	// printf("  data: [%s]\n", data->textures.west);
+	// printf("  game: [%s]\n", game->textures.west.addr);
+	printf("[map.map_layout -> map.map]\n");
+	debug_print_map_compare(data->map.map_layout, game->map.map);
+	printf("=================================================\n");
 }

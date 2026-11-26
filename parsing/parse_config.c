@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_config.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: febranda <febranda@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/26 16:11:53 by febranda          #+#    #+#             */
+/*   Updated: 2026/11/26 17:18:12 by febranda         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/parser.h"
 
 static int	split_config(char *line, char **id, char **value)
@@ -28,6 +40,11 @@ static int	set_texture(char **dst, int *flag, char *path)
 	if (*flag)
 	{
 		parse_error("Duplicate texture configuration");
+		return (1);
+	}
+	if (texture_sufix_verification(path))
+	{
+		parse_error("Not a .xpm texture");
 		return (1);
 	}
 	if (check_texture_file(path))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: febranda <febranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 17:14:47 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/25 18:23:42 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/26 17:16:13 by febranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	remove_newline(char *line);
 void	drain_gnl(int fd);
 void	free_config(t_data_pars *game_config);
 int		sufix_verification(char *map);
+int		texture_sufix_verification(char *texture);
 
 //INTEGRAÇÃO
 // int		config_to_game(t_data_pars *cfg, t_game *game);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+         #
+#    By: febranda <febranda@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/24 07:25:17 by rosousa-          #+#    #+#              #
-#    Updated: 2026/11/25 18:18:55 by rosousa-         ###   ########.fr        #
+#    Updated: 2026/11/26 18:40:42 by febranda         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX):
-	$(MAKE) -C $(MLX_DIR)
+	@$(MAKE) -C $(MLX_DIR)
 
 #root object
 objs/%.o: %.c
@@ -104,14 +104,14 @@ $(PARSING_DIR)/objs/%.o: $(PARSING_DIR)/%.c
 #CLEANUP
 clean:
 
-	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(MLX_DIR) clean
-	rm -rf $(OBJ_DIR)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(MAKE) -C $(MLX_DIR) clean
+	@rm -rf $(OBJ_DIR)
 	@echo "Pastas objs removidas."
 
 fclean: clean
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -f $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
 	@echo "Executável removido."
 
 re: fclean all

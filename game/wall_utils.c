@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:12:26 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/27 17:07:05 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/27 17:37:33 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ t_side	get_side(t_ray *ray)
 	if (ray->side == 0)
 	{
 		if (ray->ray_dx > 0)
-			return (SIDE_W);
-		return (SIDE_E);
+			return (SIDE_E);
+		return (SIDE_W);
 	}
 	if (ray->ray_dy > 0)
-		return (SIDE_N);
-	return (SIDE_S);
+		return (SIDE_S);
+	return (SIDE_N);
 }
 
 void	set_hit(t_game *game, t_ray *ray, t_hit *hit)

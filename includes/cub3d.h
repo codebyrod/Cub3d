@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 14:27:41 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/27 16:25:26 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/27 16:57:50 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,11 +196,13 @@ typedef struct s_game
 }	t_game;
 
 int		cub_init(t_game *game);
+
 // void	end_connection(t_game *game);
 
 //FUNÇÕES DE LIMPEZA DA CUB_INIT
 void	err_init_cub(t_game *game, char *str);
 void	clear_connection(t_game *game);
+int		cub_connection_aux(t_game *game);
 void	clear_window(t_game *game);
 void	clear_img_ptr(t_game *game);
 void	clear_one_texture(t_game *game, t_img *text);
@@ -238,6 +240,8 @@ void	move_player_dir(t_game *game, double forward, double strafe);
 void	next_move(t_game *game);
 void	calc_angle(t_game *game);
 void	calc_coord_delta(t_game *game);
+void	calc_coord_elta_aux(t_game *game);
+void	move_with_collision(t_game *game, double dx, double dy);
 
 //raycasting
 void	advance_ray(t_ray *ray);

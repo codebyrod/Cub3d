@@ -6,42 +6,21 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 18:18:21 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/22 19:04:58 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/27 17:15:27 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	move_with_collision(t_game *game, double dx, double dy)
-{
-	double next_x;
-	double next_y;
-
-	next_x = game->play.play_x + dx;
-
-	//Verifica a colisão no eixo x
-	if (!is_player_colliding(game, next_x, game->play.play_y))
-		game->play.play_x = next_x;
-
-	next_y = game->play.play_y + dy;
-	//verifica a colisão no eixo y
-	if (!is_player_colliding(game, game->play.play_x, next_y))
-		game->play.play_y = next_y;
-}
 void	move_player_dir(t_game *game, double forward, double strafe)
 {
 	double	dx;
 	double	dy;
 	double	speed;
 
-	// Velocidade multiplicada pelo tempo entre frames
 	speed = SPEED_SEC * game->time.delta_time;
-
-	// Combina movimento frontal e lateral.
 	dx = (game->play.dir_x * forward - game->play.dir_y * strafe) * speed;
 	dy = (game->play.dir_y * forward + game->play.dir_x * strafe) * speed;
-
-	// Aplica o deslocamento respeitando as parede
 	move_with_collision(game, dx, dy);
 }
 
@@ -52,20 +31,14 @@ void	next_move(t_game *game)
 
 	forward = 0;
 	strafe = 0;
-	
 	if (game->keys.w)
-		forward +=1;
-		
+		forward += 1;
 	if (game->keys.s)
-		forward -=1;
-	
+		forward -= 1;
 	if (game->keys.a)
-		strafe -=1;
-	
+		strafe -= 1;
 	if (game->keys.d)
-		strafe +=1;
-
-	//vamos ter uma função que aplica esses calculos
+		strafe += 1;
 	move_player_dir(game, forward, strafe);
 	return ;
 }
@@ -82,7 +55,7 @@ void	calc_angle(t_game *game)
 	if (game->keys.a_left == BOOL_TRUE)
 		ang -= ROT_SPEED_SEC * game->time.delta_time;
 	if (game->keys.a_right == BOOL_TRUE)
-		ang += ROT_SPEED_SEC * game->time.delta_time;	
+		ang += ROT_SPEED_SEC * game->time.delta_time;
 	ang = ang * (M_PI / 180.0);
 	tmp_x = game->play.dir_x * cos(ang) - game->play.dir_y * sin(ang);
 	tmp_y = game->play.dir_x * sin(ang) + game->play.dir_y * cos(ang);
@@ -92,76 +65,37 @@ void	calc_angle(t_game *game)
 	game->play.dir_y = tmp_y;
 	game->play.cam_x = tmp_cam_x;
 	game->play.cam_y = tmp_cam_y;
-
-	// printf("left=%d right=%d dir=(%.3f, %.3f)\n",
-	// game->keys.a_left, game->keys.a_right,
-	// game->play.dir_x, game->play.dir_y);
 }
-
-
-// void	next_move(t_game *game)
-// {
-// 	double	tmp_x;
-// 	double	tmp_y;
-// 	double	radius_x;
-// 	double	radius_y;
-
-// 	tmp_x = game->play.play_x + game->play.delta_x;
-// 	radius_x = tmp_x;
-// 	if (game->play.delta_x > 0)
-// 		radius_x = tmp_x + game->play.radius;
-// 	else if (game->play.delta_x < 0)
-// 		radius_x = tmp_x - game->play.radius;
-// 	if (game->map.map[(int)game->play.play_y][(int)radius_x] == '0')
-// 		game->play.play_x = tmp_x;
-// 	tmp_y = game->play.play_y + game->play.delta_y;
-// 	radius_y = tmp_y;
-// 	if (game->play.delta_y > 0)
-// 		radius_y = tmp_y + game->play.radius;
-// 	else if (game->play.delta_y < 0)
-// 		radius_y = tmp_y - game->play.radius;
-// 	if (game->map.map[(int)radius_y][(int)game->play.play_x] == '0')
-// 		game->play.play_y = tmp_y;
-// 	return ;
-// }
-
-
 
 void	calc_coord_delta(t_game *game)
 {
-	double	timestamp_current;
-	struct timeval tv;
-	
-	//VERIFICAR SE POSSO USAR ESSA FUNÇÃO
+	double			timestamp_current;
+	struct timeval	tv;
+
 	gettimeofday(&tv, NULL);
 	timestamp_current = tv.tv_sec + (tv.tv_usec / 1000000.0);
 	game->time.delta_time = timestamp_current - game->time.last_frame_time;
 	game->play.delta_x = 0;
 	game->play.delta_y = 0;
-	if (game->keys.w == BOOL_TRUE)
-		game->play.delta_y -= SPEED_SEC * game->time.delta_time;
-	if (game->keys.s == BOOL_TRUE)
-		game->play.delta_y += SPEED_SEC * game->time.delta_time;
-	if (game->keys.a == BOOL_TRUE)
-		game->play.delta_x -= SPEED_SEC * game->time.delta_time;
-	if (game->keys.d == BOOL_TRUE)
-		game->play.delta_x += SPEED_SEC * game->time.delta_time;
-	game->play.magnitude = sqrt((game->play.delta_x * game->play.delta_x) 
-		+ (game->play.delta_y * game->play.delta_y));
+	calc_coord_elta_aux(game);
+	game->play.magnitude = sqrt((game->play.delta_x * game->play.delta_x)
+			+ (game->play.delta_y * game->play.delta_y));
 	if (game->play.magnitude > (SPEED_SEC * game->time.delta_time))
 	{
-		game->play.delta_x = (game->play.delta_x / game->play.magnitude) * (SPEED_SEC * game->time.delta_time); 
-		game->play.delta_y = (game->play.delta_y / game->play.magnitude) * (SPEED_SEC * game->time.delta_time);
+		game->play.delta_x = (game->play.delta_x / game->play.magnitude)
+			* (SPEED_SEC * game->time.delta_time);
+		game->play.delta_y = (game->play.delta_y / game->play.magnitude)
+			* (SPEED_SEC * game->time.delta_time);
 	}
 	game->time.last_frame_time = timestamp_current;
 	return ;
 }
 
 int	handle_movement(t_game *game)
-{	
+{
 	calc_coord_delta(game);
 	calc_angle(game);
 	next_move(game);
 	game_render(game);
 	return (0);
-} 
+}

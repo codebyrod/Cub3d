@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: febranda <febranda@student.42.fr>          +#+  +:+       +#+         #
+#    By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/24 07:25:17 by rosousa-          #+#    #+#              #
-#    Updated: 2026/11/26 18:40:42 by febranda         ###   ########.fr        #
+#    Updated: 2026/11/27 16:56:09 by rosousa-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ GAME_SRC    = camera.c \
                 events.c \
                 game_render.c \
                 map.c \
+                movement_utils.c \
                 movement.c \
                 player.c \
                 ray_utils.c \

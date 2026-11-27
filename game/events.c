@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 21:52:34 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/25 12:56:50 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/27 17:15:46 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	handle_press(int keycode, t_game *game)
 		game->keys.a_left = BOOL_TRUE;
 	return (0);
 }
+
 int	handle_release(int keycode, t_game *game)
 {
 	if (keycode == XK_w || keycode == XK_W)
@@ -50,7 +51,6 @@ int	handle_release(int keycode, t_game *game)
 		game->keys.x = BOOL_FALSE;
 	else if (keycode == XK_Escape)
 		close_handler(game);
-		// game->keys.esc = BOOL_FALSE;
 	else if (keycode == XK_Up)
 		game->keys.a_up = BOOL_FALSE;
 	else if (keycode == XK_Right)
@@ -59,26 +59,14 @@ int	handle_release(int keycode, t_game *game)
 		game->keys.a_bottom = BOOL_FALSE;
 	else if (keycode == XK_Left)
 		game->keys.a_left = BOOL_FALSE;
-	// printf("A tecla SOLTA foi %d\n", keycode);
 	return (0);
 }
 
-
-
 void	events_init(t_game *game)
 {
-	//FAZER DOIS KEY_HOOK. PRESS E RELEASE
-	
-	//PRESS
 	mlx_hook(game->window, KeyPress, KeyPressMask, handle_press, game);
-	
-	//RELEASE
 	mlx_hook(game->window, KeyRelease, KeyReleaseMask, handle_release, game);
-	
-	//loop
 	mlx_loop_hook(game->connection, handle_movement, game);
-	// printf("loop_hook aqui\n");
 	mlx_hook(game->window, DestroyNotify,
 		StructureNotifyMask, close_handler, game);
-	// printf("events\n");
 }

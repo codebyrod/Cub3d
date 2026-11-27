@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 14:27:41 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/27 16:57:50 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/27 17:31:48 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,10 +196,6 @@ typedef struct s_game
 }	t_game;
 
 int		cub_init(t_game *game);
-
-// void	end_connection(t_game *game);
-
-//FUNÇÕES DE LIMPEZA DA CUB_INIT
 void	err_init_cub(t_game *game, char *str);
 void	clear_connection(t_game *game);
 int		cub_connection_aux(t_game *game);
@@ -208,32 +204,16 @@ void	clear_img_ptr(t_game *game);
 void	clear_one_texture(t_game *game, t_img *text);
 void	clear_textures(t_game *game);
 void	end_connection(t_game *game);
-// void	clear_img_pixel(t_game *game);
-
-//imagens 2d
-// void put_img(t_game *game);
 void	game_render(t_game *game);
-void	put_tile(t_game *game, int SIZE, int coord_x, int coord_y, int color);
-// void	handle_pixel(t_game *game);
 void	my_pixel_put(t_img *img, int x, int y, int color);
-
-//map
 void	map_render(t_game *game);
-
-//player
 void	player_render(t_game *game);
 void	player_init(t_game *game);
-
-//events
 int		close_handler(t_game *game);
 void	events_init(t_game *game);
-
-//data inits
 void	data_init(t_game *game);
 void	pos_init_player(t_game *game);
 void	config_to_game(t_game *game, t_data_pars *data);
-
-//movements
 int		handle_movement(t_game *game);
 int		is_player_colliding(t_game *game, double x, double y);
 void	move_player_dir(t_game *game, double forward, double strafe);
@@ -242,11 +222,8 @@ void	calc_angle(t_game *game);
 void	calc_coord_delta(t_game *game);
 void	calc_coord_elta_aux(t_game *game);
 void	move_with_collision(t_game *game, double dx, double dy);
-
-//raycasting
 void	advance_ray(t_ray *ray);
 t_hit	cast_ray(t_game *game, double ray_dx, double ray_dy);
-// void	draw_ray_debug(t_game *game, double ray_dx, double ray_dy);
 t_side	get_side(t_ray *ray);
 void	init_ray(t_game *game, t_ray *ray, double ray_dx, double ray_dy);
 void	init_ray_delta(t_ray *ray);
@@ -257,12 +234,7 @@ void	test_ray(t_game *game);
 t_hit	trace_ray(t_game *game, t_ray *ray, t_hit hit);
 void	set_hit(t_game *game, t_ray *ray, t_hit *hit);
 void	get_camera_ray(t_game *game, int sc_x, double *ray_dx, double *ray_dy);
-
-//camera
 void	init_camera_plane(t_game *game);
-// void	draw_camera_rays(t_game *game);
-
-//walls
 double	calc_perp_dist(t_game *game, t_hit hit);
 int		calc_wall_height(double perp_dist);
 void	draw_background(t_game *game);
@@ -270,17 +242,10 @@ void	draw_wall_column(t_game *game, int x, int wall_h, t_hit hit);
 void	render_wall_column(t_game *game, int x);
 void	render_walls(t_game *game);
 int		get_color_rgb(int r, int g, int b);
-
-//texture
 int		load_texture(t_game *game, t_img *texture, char *path);
 t_img	*get_wall_texture(t_game *game, t_side	side);
 int		get_texture_x(t_hit hit, t_img *textures);
 int		get_texture_color(t_img *texture, int x, int y);
-
-//textura mockada
 int		textures_init(t_game *game);
-
-// texture
-// static void set_player_dir(t_game *game, char c);
 
 #endif

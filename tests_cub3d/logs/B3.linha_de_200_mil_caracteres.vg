@@ -1,0 +1,72 @@
+==959165== FILE DESCRIPTORS: 5 open (3 std) at exit.
+==959165== Open file descriptor 4: tests_cub3d/maps/bad/arq_linha_enorme.cub
+==959165==    at 0x4BC060B: open (open64.c:41)
+==959165==    by 0x4058C7: parse (parse.c:77)
+==959165==    by 0x4025FF: main (main.c:147)
+==959165== 
+==959165== Open file descriptor 3: /home/rosousa-/Documents/milestone_4/Cub3d/tests_cub3d/vg.log
+==959165==    <inherited from parent>
+==959165== 
+==959165== 
+==959165== 8 bytes in 1 blocks are still reachable in loss record 1 of 6
+==959165==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==959165==    by 0x4071B9: ft_calloc (in /home/rosousa-/Documents/milestone_4/Cub3d/cub3D)
+==959165==    by 0x4073B4: fill_buffer (in /home/rosousa-/Documents/milestone_4/Cub3d/cub3D)
+==959165==    by 0x4072FA: get_next_line (in /home/rosousa-/Documents/milestone_4/Cub3d/cub3D)
+==959165==    by 0x4057EA: parse_file (parse.c:60)
+==959165==    by 0x4058FB: parse (parse.c:83)
+==959165==    by 0x4025FF: main (main.c:147)
+==959165== 
+==959165== 31 bytes in 1 blocks are still reachable in loss record 2 of 6
+==959165==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==959165==    by 0x4070B5: ft_strdup (in /home/rosousa-/Documents/milestone_4/Cub3d/cub3D)
+==959165==    by 0x405E01: set_texture (parse_config.c:38)
+==959165==    by 0x405BFD: set_config (parse_config.c:72)
+==959165==    by 0x405985: handle_config (parse_config.c:102)
+==959165==    by 0x405735: handle_line (parse.c:21)
+==959165==    by 0x4057AB: parse_file (parse.c:52)
+==959165==    by 0x4058FB: parse (parse.c:83)
+==959165==    by 0x4025FF: main (main.c:147)
+==959165== 
+==959165== 31 bytes in 1 blocks are still reachable in loss record 3 of 6
+==959165==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==959165==    by 0x4070B5: ft_strdup (in /home/rosousa-/Documents/milestone_4/Cub3d/cub3D)
+==959165==    by 0x405E01: set_texture (parse_config.c:38)
+==959165==    by 0x405C43: set_config (parse_config.c:74)
+==959165==    by 0x405985: handle_config (parse_config.c:102)
+==959165==    by 0x405735: handle_line (parse.c:21)
+==959165==    by 0x4057AB: parse_file (parse.c:52)
+==959165==    by 0x4058FB: parse (parse.c:83)
+==959165==    by 0x4025FF: main (main.c:147)
+==959165== 
+==959165== 31 bytes in 1 blocks are still reachable in loss record 4 of 6
+==959165==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==959165==    by 0x4070B5: ft_strdup (in /home/rosousa-/Documents/milestone_4/Cub3d/cub3D)
+==959165==    by 0x405E01: set_texture (parse_config.c:38)
+==959165==    by 0x405C85: set_config (parse_config.c:76)
+==959165==    by 0x405985: handle_config (parse_config.c:102)
+==959165==    by 0x405735: handle_line (parse.c:21)
+==959165==    by 0x4057AB: parse_file (parse.c:52)
+==959165==    by 0x4058FB: parse (parse.c:83)
+==959165==    by 0x4025FF: main (main.c:147)
+==959165== 
+==959165== 31 bytes in 1 blocks are still reachable in loss record 5 of 6
+==959165==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==959165==    by 0x4070B5: ft_strdup (in /home/rosousa-/Documents/milestone_4/Cub3d/cub3D)
+==959165==    by 0x405E01: set_texture (parse_config.c:38)
+==959165==    by 0x405CCB: set_config (parse_config.c:78)
+==959165==    by 0x405985: handle_config (parse_config.c:102)
+==959165==    by 0x405735: handle_line (parse.c:21)
+==959165==    by 0x4057AB: parse_file (parse.c:52)
+==959165==    by 0x4058FB: parse (parse.c:83)
+==959165==    by 0x4025FF: main (main.c:147)
+==959165== 
+==959165== 118,205 bytes in 1 blocks are still reachable in loss record 6 of 6
+==959165==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==959165==    by 0x4076A0: ft_strjoin (in /home/rosousa-/Documents/milestone_4/Cub3d/cub3D)
+==959165==    by 0x40745F: fill_buffer (in /home/rosousa-/Documents/milestone_4/Cub3d/cub3D)
+==959165==    by 0x4072FA: get_next_line (in /home/rosousa-/Documents/milestone_4/Cub3d/cub3D)
+==959165==    by 0x4057EA: parse_file (parse.c:60)
+==959165==    by 0x4058FB: parse (parse.c:83)
+==959165==    by 0x4025FF: main (main.c:147)
+==959165== 

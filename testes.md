@@ -217,16 +217,16 @@ Com `debug_print_config` e depois do `config_to_game`:
 
 ## Bloco 9: Carga das texturas no jogo
 
-- [ ] Textura de outro caminho (`NO ./textures/t_n.xpm`) → aparece na parede norte
-- [ ] **Arquivo que não é xpm** (`NO ./maps/good/base.cub`) → `Texture error`, código 1, sem leak
-- [ ] Arquivo vazio como textura → mesmo resultado
-- [ ] Xpm truncado (`head -c 200 textures/north.xpm > textures/trunc.xpm`) → erro limpo, sem crash
-- [ ] **Falha parcial:** NO e SO válidas, WE inválida → o cleanup libera as duas que carregaram (valgrind)
-- [ ] Falha na primeira, na última, e em cada uma das quatro
-- [ ] Texturas de **tamanhos diferentes** entre faces (64x64, 128x128, 32x32) → nenhuma parede distorcida nem crash
-- [ ] Textura **não quadrada** (64x128) → sem leitura fora da imagem
-- [ ] Textura 1x1 → não divide por zero
-- [ ] Textura grande (1024x1024) → renderiza sem lentidão absurda
+- [x] Textura de outro caminho (`NO ./textures/t_n.xpm`) → aparece na parede norte
+- [x] **Arquivo que não é xpm** (`NO ./maps/good/base.cub`) → `Texture error`, código 1, sem leak
+- [x] Arquivo vazio como textura → mesmo resultado
+- [x] Xpm truncado (`head -c 200 textures/north.xpm > textures/trunc.xpm`) → erro limpo, sem crash
+- [x] **Falha parcial:** NO e SO válidas, WE inválida → o cleanup libera as duas que carregaram (valgrind)
+- [x] Falha na primeira, na última, e em cada uma das quatro
+- [x] Texturas de **tamanhos diferentes** entre faces (64x64, 128x128, 32x32) → nenhuma parede distorcida nem crash
+- [x] Textura **não quadrada** (64x128) → sem leitura fora da imagem
+- [x] Textura 1x1 → não divide por zero
+- [x] Textura grande (1024x1024) → renderiza sem lentidão absurda
 
 ## Bloco 10: Spawn e primeiro frame
 

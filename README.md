@@ -1,135 +1,201 @@
-*This project was created as part of the 42 curriculum by febranda e rosousa-.*
+*This project has been created as part of the 42 curriculum by rosousa-, febranda.*
 
----
+# cub3D
 
-# Cub3d
+> My first RayCaster with miniLibX
 
-[🇧🇷 Versão em Português](#portugues) | [🇺🇸 English Version](#english)
+## Description
 
-## <a id="portugues"></a>🇧🇷 Versão em Português
+**cub3D** is a "realistic" 3D first-person view of the inside of a maze, built from scratch in C with the **miniLibX** graphics library. It is inspired by *Wolfenstein 3D* (id Software, 1992), widely considered the first FPS ever made, and uses the **ray-casting** technique to turn a flat 2D map into a 3D scene.
 
-Aqui começa o seu texto em português.
+The goal of the project is to practice rigor in C, memory management, basic algorithms, event handling and graphics programming, while using mathematics (vectors, trigonometry, grid traversal) as a practical tool.
 
----
+### Overview
 
-*Este projeto foi criado como parte do currículo da 42 por febranda e rosousa-.*
+The program reads a scene description file (`.cub`), validates it, and opens a window where the player can walk through the maze. For every vertical column of the screen, a ray is cast from the player's position through the map grid until it hits a wall. The distance to that wall defines how tall the wall slice is drawn, and the face that was hit (North, South, East or West) defines which texture is applied.
 
----
+### Features
 
-## 📝 Descrição
+- Ray-casting engine using the **DDA** (Digital Differential Analyzer) algorithm.
+- Fisheye correction through perpendicular wall distance.
+- Textured walls, with a different texture for each cardinal direction (N, S, E, W).
+- Configurable floor and ceiling colors (RGB).
+- Smooth movement independent of the frame rate (delta-time based), with normalized diagonal speed.
+- Wall collision.
+- Strict `.cub` parser with explicit error messages (`Error\n` + message).
+- Clean exit with no memory leaks (ESC key or window close button).
 
-[..em construção]
+## Instructions
 
----
+### Requirements
 
-## 🛠️ Instruções
+- Linux with an X11 server
+- `cc` (gcc or clang) and `make`
+- X11 development libraries required by miniLibX
 
-### Pré-requisitos
-O projeto foi desenvolvido em **C** e utiliza a biblioteca gráfica `MiniLibX`. Certifique-se de ter `gcc`, `make` e as dependências da X11 instaladas (se estiver no Linux).
+On Ubuntu/Debian:
 
-O MiniLibX para Linux requerxorg ,x11 ezlib , portanto você precisará instalar as seguintes dependências:xorg ,libxext-dev ezlib1g-dev . A instalação dessas dependências no Ubuntu pode ser feita da seguinte forma:
+```bash
+sudo apt-get update
+sudo apt-get install build-essential xorg libxext-dev zlib1g-dev libbsd-dev
+```
 
-sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+The sources of `libft` and `minilibx-linux` are already included in the repository, and the `Makefile` builds both automatically.
 
-### Compilação
-Para compilar o projeto, é necessário executar `make` na pasta da `MiniLibx`. Após isso execute o seguinte comando na raiz do repositório:
+### Compilation
+
+From the root of the repository:
 
 ```bash
 make
 ```
 
-### Execução
+Available rules:
 
-[..em construção]
+| Rule         | Description                                              |
+|--------------|----------------------------------------------------------|
+| `make`/`all` | Builds `libft`, `miniLibX` and the `cub3D` executable    |
+| `make clean` | Removes object files (including libft and miniLibX ones) |
+| `make fclean`| Removes object files and the `cub3D` executable          |
+| `make re`    | Rebuilds everything from scratch                         |
 
+The project is compiled with `cc -Wall -Wextra -Werror`.
 
+### Execution
+
+```bash
+./cub3D <path_to_map>.cub
 ```
 
-### Controles
+Example:
 
-Uma vez que a janela esteja aberta:
-- **Setas:** 
-- **ESC** ou **X da janela:** Fechar o programa limpo (sem leaks).
+```bash
+./cub3D maps/valid/subject.cub
+```
 
-## 📚 Recursos e Referências
-Este projeto foi construído com base em conceitos matemáticos sólidos e otimizações de computação. Abaixo estão os tópicos e referências utilizados:
+> Texture paths inside the `.cub` file are relative to the directory where the program is executed, so run it from the root of the repository when using the provided maps.
 
-### Teoria Matemática
+### Controls
 
+| Key                  | Action                         |
+|----------------------|--------------------------------|
+| `W`                  | Move forward                   |
+| `S`                  | Move backward                  |
+| `A`                  | Strafe left                    |
+| `D`                  | Strafe right                   |
+| `←` / `→`            | Rotate the view left / right   |
+| `ESC`                | Quit the program               |
+| Window close button  | Quit the program               |
 
-### Lógica de Programação
-- **Mapeamento (Mapping):** Conversão de coordenadas de tela (pixels 0-800) para o plano complexo (ex: -2.0 a +2.0) usando interpolação linear.
-- **Forma Algébrica:** Optou-se por usar $(x^2 - y^2) + 2xyi$ em vez da forma trigonométrica/polar para maximizar a performance da CPU.
-- **Passagem por Referência:** Correção de bugs críticos na manipulação de structs complexas passando ponteiros para funções de renderização.
+### Scene description file (`.cub`)
 
-### Referências Externas
+The file must have the `.cub` extension and contain six configuration elements followed by the map, which must always be the **last** element. Configuration elements can appear in any order, be separated by empty lines, and have their values separated by one or more spaces.
 
-usadas no cub3d
-https://harm-smits.github.io/42docs/libs/minilibx/
+| Identifier | Meaning                | Format                          |
+|------------|------------------------|---------------------------------|
+| `NO`       | North wall texture     | `NO ./path/to/north.xpm`        |
+| `SO`       | South wall texture     | `SO ./path/to/south.xpm`        |
+| `WE`       | West wall texture      | `WE ./path/to/west.xpm`         |
+| `EA`       | East wall texture      | `EA ./path/to/east.xpm`         |
+| `F`        | Floor color            | `F R,G,B` (each value in 0–255) |
+| `C`        | Ceiling color          | `C R,G,B` (each value in 0–255) |
 
+Textures must be in **`.xpm`** format.
 
+The map is made of only these characters:
 
-usadas no fractol que me ajudou a entender a minilibx
-- **Equaciona Com Paulo Pereira:** Conjunto de aulas sobre números complexos ministradas através do canal do youtube.
-- **Beginner's Guide To The Desktop:** série de vídeos explicando componentes básicos do desktop:
-	- Aula 1: Introduction
-	- Aula 2: X11, Display Manager and Windows Manager
-- **fractol: render beautiful fractals in C (mandelbrot and julia set)**. Video do canal do Youtube "Oceano" onde o mesmo descomplexifica a estrutura do projeto e oferece um passo a passo de como realizá-lo.
-- **Introduction to the minilibX : a simple X-Window programming API in C:** Vídeo do canal do Youtube "Oceano" explicando o funcionamento da biblioteca minilibX.
-- **Draw a Pollock painting with the minilibX:** Vídeo do canal do Youtube "Oceano" explicando o funcionamento da biblioteca minilibX.
-- **The Mandelbrot Fractal Explained!:** Vídeo do canal do Youtube "The Art of Code" explicando o conjunto Mandelbrot.
-- **Como os Números Imaginários Foram Inventados:** Video do canal do Youtube "Veritassium em Português" explicando a origem dos números imaginários.
-- **MinilibX Documentation:** Documentação oficial.
-- **harm-smits.github.io/42docs:** Documentação complementar da biblioteca minilibx.
-- **Wikipedia:** Artigos sobre "Mandelbrot set" e "Julia set" para constantes interessantes.
+| Character      | Meaning                                               |
+|----------------|-------------------------------------------------------|
+| `0`            | Empty space                                           |
+| `1`            | Wall                                                  |
+| `N` `S` `E` `W`| Player start position and initial facing direction    |
+| ` ` (space)    | Void outside the playable area (valid in the file)    |
 
+Map rules:
 
-## 🤖 Uso de Inteligência Artificial
+- There must be **exactly one** player start.
+- The map must be **closed/surrounded by walls**: no walkable tile may touch the map border or a space.
+- The map is parsed exactly as it looks in the file.
 
-### 0. IA's
-Usada na maior parte do tempo foi Claude.
-Para dúvidas com git e gitflow foi usado majoritariamente o chatgpt
+Minimal example:
 
-auxiliando nas seguintes tarefas específicas:
+```
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
 
-### 1. Planejamento
-Ajudou a elaborar um Planejamento de 40 dias para conseguir elaborar o projeto dividindo em tarefas verificáveis, sprint e entregáveis ao final da sprint, vc pode verificar o planejamento aqui.
+F 220,100,0
+C 225,30,0
 
+111111
+100101
+101001
+1100N1
+111111
+```
 
-### 2. Explicação de Conceitos Matemáticos:
+### Error handling
 
-- Ajudou no cálculo diagonal do movimento do jogador, usando fórmulas mátemáticas (explicar melhor)
-### Normalização de movimento diagonal
+If anything in the file is misconfigured (wrong arguments or extension, unreadable file, missing/invalid texture, invalid color, invalid character, open map, no or multiple players, etc.), the program prints `Error` followed by an explicit message on the standard error, frees everything it allocated and exits without opening a window.
 
-Ao somar o deslocamento independentes (x e y) do jogador para cada tecla de movimento (WASD), surgiu um bug clássico de jogos com grid-based movement: pressionar duas teclas perpendiculares ao mesmo tempo (ex: W+D) fazia o jogador se mover na diagonal com velocidade maior (~40%) que em linha reta, já que a distância percorrida é a hipotenusa dos dois deltas somados (`√(dx² + dy²)`), não a soma simples. A solução, sugerida pela IA, foi normalizar o vetor de movimento: somar todos os deltas ativos primeiro, calcular a magnitude do vetor resultante e, se ela exceder a velocidade máxima, reescalar `delta_x`/`delta_y` proporcionalmente (`delta / magnitude * velocidade`) antes de aplicar à posição do jogador — corrigindo o caso geral, com qualquer número de teclas simultâneas, sem precisar enumerar combinações.
+### Project structure
 
+```
+.
+├── Makefile
+├── main.c               # Entry point: parse, bridge data to the game, start
+├── includes/
+│   ├── cub3d.h          # Game structures and prototypes
+│   └── parser.h         # Parser structures and prototypes
+├── parsing/             # .cub parsing and validation
+│   ├── parse.c / parse_config.c / parse_map.c
+│   ├── parse_values.c   # RGB parsing and texture file checks
+│   ├── validation_map.c / validation_size.c
+│   └── sufix_verification.c   # .cub / .xpm extension checks
+├── game/                # Engine
+│   ├── cub3d.c / data_init.c / config_bridge_game.c
+│   ├── events.c         # Keyboard and window hooks
+│   ├── movement.c       # Movement, rotation and collisions
+│   ├── camera.c         # Camera plane and per-column ray direction
+│   ├── ray.c / ray_utils.c    # DDA ray traversal
+│   ├── wall.c / wall_utils.c  # Wall projection and drawing
+│   ├── textures.c       # Texture loading and sampling
+│   ├── game_render.c    # Frame rendering
+│   └── clear.c / clear_aux.c / err_init_cub.c   # Cleanup
+├── libft/               # Libft (with get_next_line)
+├── minilibx-linux/      # miniLibX sources
+├── textures/            # Example .xpm textures
+└── maps/                # Example .cub maps
+```
 
+### Technical choices
 
+- **Parser and engine are decoupled.** The parser fills a `t_data_pars` structure, and a bridge (`config_bridge_game.c`) copies that data into the `t_game` structure used by the engine, so the raycaster knows nothing about parsing.
+- **DDA grid traversal.** Each ray steps from one grid line to the next (`side_dist` / `delta_dist`), always moving along the closest axis until a wall is found. The axis crossed last tells which face (N/S/E/W) was hit.
+- **Camera model.** The player has a direction vector and a camera plane vector (FOV of 66°). Rotating the view rotates both vectors.
+- **Perpendicular distance.** Wall height is computed from the distance projected onto the view direction, which avoids the fisheye effect.
+- **Image buffer.** Each frame is drawn into a miniLibX image (pixel writes directly into its buffer) and pushed to the window once, instead of drawing pixel by pixel on the window.
+- **Frame-rate independent movement.** Speeds are multiplied by the time elapsed between frames (`gettimeofday`). Movement vectors are normalized so pressing two keys at once does not make the player faster.
+- **Axis-separated collision.** X and Y movements are tested independently, which lets the player slide along walls.
 
-- Ajudou a visualizar a diferença entre a iteração do Mandelbrot ($Z$ começa em 0, $C$ muda) e Julia ($Z$ é o pixel, $C$ é constante).
-- Clarificou por que sqrt deve ser evitado em loops de renderização (comparação com raio ao quadrado).
+## Resources
 
-### 2. Depuração de Código (Debugging):
-- Correção de lógica de ponteiros na função handle_pixel (erro de passagem por valor vs. referência).
-- Diagnóstico de erros do Valgrind relacionados a memória não inicializada na mlx_new_window.
+### Documentation and tutorials
 
-### 3. Otimização e Boas Práticas:
-- Sugestão de substituir comparações de strings (ft_strcmp) dentro do loop de renderização por flags inteiras (int type).
-- Explicação sobre o uso correto da palavra-chave static em arquivos .c versus .h.
+- [miniLibX documentation (42 Docs)](https://harm-smits.github.io/42docs/libs/minilibx/): complete guide to the miniLibX functions.
+- [Lode's Computer Graphics Tutorial — Raycasting](https://lodev.org/cgtutor/raycasting.html): classic reference for the ray-casting and DDA algorithm.
+- [Ray casting — Wikipedia](https://en.wikipedia.org/wiki/Ray_casting) and [Wolfenstein 3D — Wikipedia](https://en.wikipedia.org/wiki/Wolfenstein_3D): background on the technique and the original game.
+- [Wolfenstein 3D (playable online)](http://users.atw.hu/wolf3d/): the original game, as suggested by the subject.
+- `man 3 math`, `man gettimeofday`, `man 2 open`/`read`/`close`.
 
-### 4. README.md
-- A IA também auxiliou na criação deste README.md, sobretudo na geração das fontes utilizadas.
----
+### Use of AI
 
-## <a id="english"></a>English Version 🇺🇸
-[🇧🇷 Versão em Português](#portugues)
+AI tools were used as learning and support tools, and every piece of generated content was reviewed, tested and discussed between the team members before being kept.
 
-Here starts your text in English.
-
----
-*This project was created as part of the 42 curriculum by rosousa-.*
-
----
-## 📝 Description
-
-[..em construção]
+- **Claude** (main assistant) and **ChatGPT** (mostly for Git/Git-flow questions).
+- **Planning:** helped build a day-by-day project plan, split into verifiable tasks and sprints, with deliverables at the end of each sprint.
+- **Math concepts:** helped explain the vector math behind the diagonal movement bug. Pressing two perpendicular keys at once made the player move faster along the diagonal. The fix was to sum the active movement deltas, compute the magnitude of the resulting vector and rescale it to the maximum speed.
+- **Debugging:** helped interpret Valgrind reports and reason about pointer/ownership problems and cleanup of partially initialized states.
+- **Best practices:** suggestions on code organization and on using integer flags instead of string comparisons inside the render loop.
+- **Documentation:** helped structure and write this README.

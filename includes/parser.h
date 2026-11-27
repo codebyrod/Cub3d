@@ -6,7 +6,7 @@
 /*   By: febranda <febranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 17:14:47 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/26 17:16:13 by febranda         ###   ########.fr       */
+/*   Updated: 2026/11/27 14:35:14 by febranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,13 @@ typedef struct s_map_pars
 
 typedef struct s_data_pars
 {
-	int             floor_color;
-	int             ceil_color;
-	t_map_pars	    map;
-	t_texture_pars  textures;
-	t_player_pars   player_data;
-	t_parser        flags;
+	int				floor_color;
+	int				ceil_color;
+	t_map_pars		map;
+	t_texture_pars	textures;
+	t_player_pars	player_data;
+	t_parser		flags;
 }	t_data_pars;
-
 
 int		parse(char *filename, t_data_pars *game_config);
 int		parse_file(t_data_pars *game_config, int fd);
@@ -84,10 +83,5 @@ void	drain_gnl(int fd);
 void	free_config(t_data_pars *game_config);
 int		sufix_verification(char *map);
 int		texture_sufix_verification(char *texture);
-
-//INTEGRAÇÃO
-// int		config_to_game(t_data_pars *cfg, t_game *game);
-// void	free_game_map(t_game *game);
-// void	clear_textures(t_game *game);
 
 #endif

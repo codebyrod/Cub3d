@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: febranda <febranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 14:03:58 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/25 02:19:06 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/27 13:49:07 by febranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,33 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
+static char	*append_and_clean(char *buffer, char *temp, int bytes_read)
+{
+	char	*joined;
+
+	temp[bytes_read] = '\0';
+	joined = ft_strjoin(buffer, temp);
+	free(buffer);
+	if (!joined)
+	{
+		free(temp);
+		return (NULL);
+	}
+	return (joined);
+}
+
 char	*fill_buffer(char *buffer, int fd)
 {
 	int		bytes_read;
 	char	*temp;
-	char    *joined;
 
-	bytes_read = 1;
-	temp = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!temp)
+		return (NULL);
 	if (!buffer)
 		buffer = ft_strdup("");
-	while (!ft_strchr(buffer, '\n') && bytes_read > 0)
+	bytes_read = 1;
+	while (buffer && !ft_strchr(buffer, '\n') && bytes_read > 0)
 	{
 		bytes_read = read(fd, temp, BUFFER_SIZE);
 		if (bytes_read < 0)
@@ -57,18 +73,7 @@ char	*fill_buffer(char *buffer, int fd)
 			free(temp);
 			return (NULL);
 		}
-		//ALTERAÇÃO AQUI
-		joined = ft_strjoin(buffer, temp);
-		free(buffer);
-		if (!joined)
-		{
-			free(temp);
-			return (NULL);
-		}
-		buffer = joined;
-		// FIM DA ALTERAÇÃO
-		// buffer = ft_strjoin(buffer, temp);
-		ft_bzero(temp, BUFFER_SIZE);
+		buffer = append_and_clean(buffer, temp, bytes_read);
 	}
 	free(temp);
 	return (buffer);
@@ -120,17 +125,3 @@ char	*rearrange_buffer(char *buffer)
 	free(buffer);
 	return (str);
 }
-
-// void	ft_bzero(void *s, size_t n)
-// {
-// 	size_t				i;
-// 	unsigned char		*ptr;
-
-// 	ptr = (unsigned char *)s;
-// 	i = 0;
-// 	while (i < n)
-// 	{
-// 		ptr[i] = '\0' ;
-// 		i++;
-// 	}
-// }

@@ -1,5 +1,0 @@
-==932692== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==932692== Open file descriptor 3: /home/rosousa-/Documents/milestone_4/Cub3d/tests_cub3d/vg.log
-==932692==    <inherited from parent>
-==932692== 
-==932692== 

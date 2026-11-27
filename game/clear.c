@@ -6,7 +6,7 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:32:38 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/25 04:13:16 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/27 16:26:19 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	clear_window(t_game *game)
 {
 	if (game->connection && game->window)
 	{
-		// mlx_clear_window(game->connection, game->window);
 		mlx_destroy_window(game->connection, game->window);
 		game->window = NULL;
 	}
 }
+
 void	clear_img_ptr(t_game *game)
 {
 	if (game->connection && game->img.img_ptr)
@@ -40,6 +40,7 @@ void	clear_img_ptr(t_game *game)
 		game->img.img_pixels_ptr = NULL;
 	}
 }
+
 void	end_connection(t_game *game)
 {
 	clear_textures(game);

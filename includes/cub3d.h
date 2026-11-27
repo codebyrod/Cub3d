@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: febranda <febranda@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 14:27:41 by febranda          #+#    #+#             */
-/*   Updated: 2026/11/27 14:47:53 by febranda         ###   ########.fr       */
+/*   Updated: 2026/11/27 16:25:26 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,7 +252,7 @@ int		is_wall_at(t_game *game, double x, double y);
 void	test_ray(t_game *game);
 t_hit	trace_ray(t_game *game, t_ray *ray, t_hit hit);
 void	set_hit(t_game *game, t_ray *ray, t_hit *hit);
-void	get_camera_ray(t_game *game, int screen_x, double *ray_dx, double *ray_dy);
+void	get_camera_ray(t_game *game, int sc_x, double *ray_dx, double *ray_dy);
 
 //camera
 void	init_camera_plane(t_game *game);

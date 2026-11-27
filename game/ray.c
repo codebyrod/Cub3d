@@ -6,13 +6,12 @@
 /*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 21:57:18 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/22 19:05:11 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/27 17:08:14 by rosousa-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-//precisamos de uma função para avançar pelo eixo mais próximo
 void	advance_ray(t_ray *ray)
 {
 	if (ray->side_dist_x < ray->side_dist_y)
@@ -31,7 +30,6 @@ void	advance_ray(t_ray *ray)
 	}
 }
 
-//preciso de uma função para percorrer as células até encontrar parede ou limite 
 t_hit	trace_ray(t_game *game, t_ray *ray, t_hit hit)
 {
 	while (ray->dist < RAY_MAX_DIST)
@@ -64,26 +62,14 @@ t_hit	cast_ray(t_game *game, double ray_dx, double ray_dy)
 
 	hit.dist = RAY_MAX_DIST;
 	hit.side = SIDE_NONE;
-
-	// defnimos a posição inicial do jogador
 	hit.hit_x = game->play.play_x;
 	hit.hit_y = game->play.play_y;
-
-	//
 	if (ray_dx == 0.0 && ray_dy == 0.0)
 		return (hit);
-	
-	//função de inicialização da struct ray
-
-	//define a direção do raio e a célula inicial
 	init_ray(game, &ray, ray_dx, ray_dy);
-	
-	//calcula os intervalos e a primeira fronteira que cada eixo alcançara
 	init_ray_delta(&ray);
 	init_ray_step_x(game, &ray);
 	init_ray_step_y(game, &ray);
-	
-	//retorna a struct com a colisão
 	hit = trace_ray(game, &ray, hit);
-	return (hit);	
+	return (hit);
 }

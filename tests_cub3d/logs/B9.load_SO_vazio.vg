@@ -1,5 +1,0 @@
-==695939== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==695939== Open file descriptor 3: /home/febranda/projetos/fenix/Cub3d/tests_cub3d/vg.log
-==695939==    <inherited from parent>
-==695939== 
-==695939== 

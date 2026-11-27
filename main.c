@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rosousa- <rosousa-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: febranda <febranda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 20:58:53 by rodrigo           #+#    #+#             */
-/*   Updated: 2026/11/25 19:48:25 by rosousa-         ###   ########.fr       */
+/*   Updated: 2026/11/27 14:07:13 by febranda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,12 +141,10 @@ int	main(int ac, char **av)
 		parse_error("Usage: ./cub3D <map.cub>");
 		return (1);
 	}
-
     // TEMPORÁRIO
 	ft_bzero(&game, sizeof(game));
 	if (parse(av[1], &config))
 		return (1);
-	
 	// debug_print_config(&config);   // TEMPORÁRIO
 	// free_config(&config);          // TEMPORÁRIO: encerra aqui para só testar o parser
 	// return (0);
@@ -173,33 +171,6 @@ int	main(int ac, char **av)
 	}
 	return (0);
 }
-
-//TEMPORÁRIO
-// static void	debug_print_config(t_game *c, t_data_pars *c)
-// {
-// 	int	i;
-
-// 	printf("---- DEBUG PARSER ----\n");
-// 	printf("map.width    = %d\n", c->map.width);
-// 	printf("map.height   = %d\n", c->map.height);
-// 	printf("north        = [%s]\n", c->textures.north);
-// 	printf("south        = [%s]\n", c->textures.south);
-// 	printf("west         = [%s]\n", c->textures.west);
-// 	printf("east         = [%s]\n", c->textures.east);
-// 	printf("floor_color  = %d (0x%06X)\n", c->floor_color, c->floor_color);
-// 	printf("ceil_color   = %d (0x%06X)\n", c->ceil_color, c->ceil_color);
-// 	printf("player row   = %d\n", c->player_data.row);
-// 	printf("player col   = %d\n", c->player_data.col);
-// 	printf("player dir   = %c\n", c->player_data.view_direction);
-// 	printf("---- LAYOUT ----\n");
-// 	i = 0;
-// 	while (c->map.map_layout && c->map.map_layout[i])
-// 	{
-// 		printf("%2d [%s]\n", i, c->map.map_layout[i]);
-// 		i++;
-// 	}
-// 	printf("----------------------\n");
-// }
 
 static void	debug_print_map_compare(char **src, char **dst)
 {

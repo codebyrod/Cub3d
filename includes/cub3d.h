@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: febranda <febranda@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/27 14:27:41 by febranda          #+#    #+#             */
+/*   Updated: 2026/11/27 14:47:53 by febranda         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
- # define CUB3D_H
+# define CUB3D_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -37,7 +49,7 @@ typedef enum e_status_error
 	TEXTURE_ERROR,
 }	t_status_error;
 
-typedef	enum	e_bool
+typedef enum e_bool
 {
 	BOOL_FALSE,
 	BOOL_TRUE
@@ -113,8 +125,6 @@ typedef struct s_ray
 	int		side;
 }	t_ray;
 
-
-
 typedef struct s_hit
 {
 	double	dist;
@@ -125,9 +135,7 @@ typedef struct s_hit
 
 typedef struct s_player
 {
-	// int		pos_init_Y;
-	// int		pos_init_X;
-	char    view_dir;
+	char	view_dir;
 	double	play_x;
 	double	play_y;
 	double	radius;
@@ -168,7 +176,6 @@ typedef struct s_path_text
 	char	*west;
 }	t_path_text;
 
-
 typedef struct s_game
 {
 	void		*connection;
@@ -177,23 +184,22 @@ typedef struct s_game
 	int			hook;
 	t_img		img;
 	t_pxl		pxl;
-	t_player 	play;
+	t_player	play;
 	t_map		map;
 	t_keys		keys;
 	t_time		time;
-	t_data_pars *cfg;
+	t_data_pars	*cfg;
 	t_textures	textures;
-	t_path_text path_text;
+	t_path_text	path_text;
 	int			floor_color;
 	int			ceiling_color;
 }	t_game;
 
-// FUNÇÕES PRINCIPAIS
 int		cub_init(t_game *game);
 // void	end_connection(t_game *game);
 
 //FUNÇÕES DE LIMPEZA DA CUB_INIT
-void 	err_init_cub(t_game *game, char *str);
+void	err_init_cub(t_game *game, char *str);
 void	clear_connection(t_game *game);
 void	clear_window(t_game *game);
 void	clear_img_ptr(t_game *game);
@@ -216,8 +222,6 @@ void	map_render(t_game *game);
 void	player_render(t_game *game);
 void	player_init(t_game *game);
 
-
-
 //events
 int		close_handler(t_game *game);
 void	events_init(t_game *game);
@@ -226,7 +230,6 @@ void	events_init(t_game *game);
 void	data_init(t_game *game);
 void	pos_init_player(t_game *game);
 void	config_to_game(t_game *game, t_data_pars *data);
-
 
 //movements
 int		handle_movement(t_game *game);
@@ -269,7 +272,6 @@ int		load_texture(t_game *game, t_img *texture, char *path);
 t_img	*get_wall_texture(t_game *game, t_side	side);
 int		get_texture_x(t_hit hit, t_img *textures);
 int		get_texture_color(t_img *texture, int x, int y);
-
 
 //textura mockada
 int		textures_init(t_game *game);

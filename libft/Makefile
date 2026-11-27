@@ -2,8 +2,7 @@ NAME = libft.a
 
 INCLUDES = .
 
-GNL_SRCS = gnl/get_next_line.c \
-			gnl/get_next_line_utils.c
+GNL_SRCS = gnl/get_next_line.c
 
 SRCS = ft_isalpha.c \
 	ft_isdigit.c \
